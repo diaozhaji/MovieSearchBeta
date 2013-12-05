@@ -159,20 +159,25 @@ public class MovieDetailActivity extends Activity{
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			
-			try {
-				URL aryURI = new URL(mMovie.getImage_medium());
-				InputStream is = aryURI.openStream();
-				Bitmap bm = BitmapFactory.decodeStream(is);
-				if (bm == null) {
-					image.setBackgroundColor(R.drawable.detail_img_loading);
+			new Thread(){
+				public void run(){
+					try {
+						URL aryURI = new URL(mMovie.getImage_medium());
+						InputStream is = aryURI.openStream();
+						Bitmap bm = BitmapFactory.decodeStream(is);
+						if (bm == null) {
+							image.setBackgroundColor(R.drawable.detail_img_loading);
+						}
+						is.close();
+						image.setImageBitmap(bm);
+						
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
 				}
-				is.close();
-				image.setImageBitmap(bm);
 				
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
+			}.start();
+			
 			proDialog.dismiss();
 			
                 

@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity 
-            android:name="com.NG.activity.MovieDetailActivity"
+            android:name="com.NG.activity.SplashActivity"
             android:label="title">     
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
             android:label="搜索" >            
         </activity>
         <activity
-            android:name="com.NG.activity.SplashActivity"
+            android:name="com.NG.activity.MovieDetailActivity"
             android:label="电影简介" >
         </activity>
     </application>

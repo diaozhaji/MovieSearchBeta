@@ -10,7 +10,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.NG.entity.SingleEntity;
 
 /**
@@ -33,7 +32,6 @@ public class SimpleInfoLoder {
 
 		//String uString = "http://api.douban.com/v2/movie/search?q=" + ch;
 		String uString = "http://192.158.31.250/search/search/?command="+ch+"&start=0&count=50";
-		
 		URL url = new URL(uString);
 
 		StringBuilder builder = new StringBuilder();
@@ -41,7 +39,6 @@ public class SimpleInfoLoder {
 				new InputStreamReader(url.openStream()));
 		for (String s = bufferedReader.readLine(); s != null; s = bufferedReader
 				.readLine()) {
-			System.out.println(s);
 			builder.append(s);
 		}
 		

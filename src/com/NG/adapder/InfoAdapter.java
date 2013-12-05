@@ -20,19 +20,18 @@ public class InfoAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
 	private List<SingleEntity> aList;
-	private ImageLoader mImageLoader;
-	private Context context;
+	//private ImageLoader mImageLoader;
+	private Context mContext;
 	private String mText;
 
 	private boolean mBusy = false;
 
-	public InfoAdapter(Context context, ListView listView) {
-		this.context = context;
-		mInflater = LayoutInflater.from(context);
-		
-		aList = ((MainActivity) context).aList;
+	public InfoAdapter(Context context,List<SingleEntity> seList , ListView listView) {
+		this.mContext = context;
+		mInflater = LayoutInflater.from(context);		
+		aList = seList;
 		mText = "µÁ”∞";
-		mImageLoader = new ImageLoader(context);
+		//mImageLoader = new ImageLoader(context);
 	}
 
 	public void setFlagBusy(boolean busy) {
@@ -63,8 +62,8 @@ public class InfoAdapter extends BaseAdapter {
 					.findViewById(R.id.all_title);
 			viewHolder.contentTextView = (TextView)convertView
 					.findViewById(R.id.all_content);
-			viewHolder.mImageView = (ImageView) convertView
-					.findViewById(R.id.allimageview);
+			//viewHolder.mImageView = (ImageView) convertView
+					//.findViewById(R.id.allimageview);
 			convertView.setTag(viewHolder);
 		}else{
 			viewHolder = (ViewHolder) convertView.getTag();
