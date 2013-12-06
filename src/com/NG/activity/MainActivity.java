@@ -31,6 +31,7 @@ import android.widget.TextView;
 import com.NG.loader.SimpleInfoLoder;
 import com.NG.moviesearchbeta.R;
 import com.NG.adapder.InfoAdapter;
+import com.NG.adapder.SearhResultAdapter;
 import com.NG.entity.SingleEntity;
 
 /**
@@ -38,14 +39,14 @@ import com.NG.entity.SingleEntity;
  * @author tianqiujie 程序入口
  */
 
-public class MainActivity extends Activity {
+public class MainActivity extends ListActivity {
 
 	final static String TAG = "m_debug";
 	final static int LOAD_DATA = 1;
 
 	private ListView mlistView;// 存取搜索信息的列表控件
 
-	private InfoAdapter myAdapater;// 用来加载BaseAdapater
+	private SearhResultAdapter mAdapater;// 用来加载BaseAdapater
 
 	private ImageView search_button;// 搜索按钮
 	public EditText editText;// 搜索框
@@ -72,7 +73,6 @@ public class MainActivity extends Activity {
 
 	private void initView() {
 		mbp = new SingleEntity();
-
 		search_button = (ImageView) findViewById(R.id.search_button);
 		search_button.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -105,6 +105,7 @@ public class MainActivity extends Activity {
 					List<SingleEntity> seList = (ArrayList<SingleEntity>) msg.obj;
 					// 给ListView绑定数据
 					showall(seList);
+
 				}
 			}
 		};
@@ -115,7 +116,6 @@ public class MainActivity extends Activity {
 		proDialog.setTitle(R.string.loading);
 		proDialog.setMessage("请您耐心等待...");
 	}
-
 
 	Runnable downloadRun = new Runnable() {
 
@@ -129,7 +129,6 @@ public class MainActivity extends Activity {
 				e.printStackTrace();
 			}
 			handler.sendMessage(handler.obtainMessage(0, aList));
-			//showall();
 		}
 	};
 
@@ -138,11 +137,12 @@ public class MainActivity extends Activity {
 	 */
 
 	public void showall(List<SingleEntity> list) {
+		mlistView = getListView();
 
-		myAdapater = new InfoAdapter(this, list, mlistView);		
-		
-		mlistView.setAdapter(myAdapater);
-		mlistView.setOnScrollListener(mScrollListener);
+		mAdapater = new SearhResultAdapter(this, list);
+
+		mlistView.setAdapter(mAdapater);
+		//mlistView.setOnScrollListener(mScrollListener);
 
 		proDialog.dismiss();
 	}
@@ -154,36 +154,38 @@ public class MainActivity extends Activity {
 	protected void onListItemClick(ListView l, View view, int position, long id) {
 		mbp = aList.get(position);
 		Intent intent = new Intent();
+		// intent.setClass(MainActivity.this, DetailActivity.class);
 		intent.setClass(MainActivity.this, MovieDetailActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("id", mbp.getFirstUrl().toString());
 		bundle.putString("imageurl", mbp.getImageUrl().toString());
+		// bundle.putString("type", "电影");
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
-
+	
 	/**
 	 * @author tianqiujie 当listView滚动停止以后才开始异步加载图片
 	 */
-
+	
 	OnScrollListener mScrollListener = new OnScrollListener() {
 
 		@Override
 		public void onScrollStateChanged(AbsListView view, int scrollState) {
 			switch (scrollState) {
 			case OnScrollListener.SCROLL_STATE_FLING:
-				myAdapater.setFlagBusy(true);
+				mAdapater.setFlagBusy(true);
 				break;
 			case OnScrollListener.SCROLL_STATE_IDLE:
-				myAdapater.setFlagBusy(false);
+				mAdapater.setFlagBusy(false);
 				break;
 			case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
-				myAdapater.setFlagBusy(false);
+				mAdapater.setFlagBusy(false);
 				break;
 			default:
 				break;
 			}
-			myAdapater.notifyDataSetChanged();
+			mAdapater.notifyDataSetChanged();
 		}
 
 		@Override

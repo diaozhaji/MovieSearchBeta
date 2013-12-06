@@ -2,7 +2,10 @@ package com.NG.adapder;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.NG.activity.MainActivity;
+import com.NG.activity.MovieDetailActivity;
 import com.NG.cache.ImageLoader;
 import com.NG.entity.SingleEntity;
 import com.NG.moviesearchbeta.R;
@@ -20,18 +24,19 @@ public class InfoAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
 	private List<SingleEntity> aList;
-	//private ImageLoader mImageLoader;
-	private Context mContext;
+	private ImageLoader mImageLoader;
+	private Context context;
 	private String mText;
 
 	private boolean mBusy = false;
 
-	public InfoAdapter(Context context,List<SingleEntity> seList , ListView listView) {
-		this.mContext = context;
-		mInflater = LayoutInflater.from(context);		
-		aList = seList;
+	public InfoAdapter(Context context, ListView listView) {
+		this.context = context;
+		mInflater = LayoutInflater.from(context);
+		
+		aList = ((MainActivity) context).aList;
 		mText = "电影";
-		//mImageLoader = new ImageLoader(context);
+		mImageLoader = new ImageLoader(context);
 	}
 
 	public void setFlagBusy(boolean busy) {
@@ -62,14 +67,14 @@ public class InfoAdapter extends BaseAdapter {
 					.findViewById(R.id.all_title);
 			viewHolder.contentTextView = (TextView)convertView
 					.findViewById(R.id.all_content);
-			//viewHolder.mImageView = (ImageView) convertView
-					//.findViewById(R.id.allimageview);
+			viewHolder.mImageView = (ImageView) convertView
+					.findViewById(R.id.allimageview);
 			convertView.setTag(viewHolder);
 		}else{
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		
-		SingleEntity movieBriefPojo = aList.get(position);
+		final SingleEntity movieBriefPojo = aList.get(position);
 		
 		String str = "";
 		if (mText.equals("电影")) {
@@ -84,14 +89,15 @@ public class InfoAdapter extends BaseAdapter {
 				+ movieBriefPojo.getAuthorName());
 		 */
 		
-		/*
-		String url = movieBriefPojo.getImageUrl();
 		
+		String url = movieBriefPojo.getImageUrl();
+		System.out.println("image url: "+url);
+
 		if (!mBusy) {
 			mImageLoader.DisplayImage(url, viewHolder.mImageView, false);
 		} else {
 			mImageLoader.DisplayImage(url, viewHolder.mImageView, false);
-		}*/
+		}
 		
 		return convertView;
 	}

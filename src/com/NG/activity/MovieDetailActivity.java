@@ -120,10 +120,10 @@ public class MovieDetailActivity extends Activity{
 
 	private void initData() throws IOException {
 		Bundle bundle = getIntent().getExtras();		
-		//String id = bundle.getString("id");
-		//imageUrl = bundle.getString("imageurl");
-		String id = "3926132";
-		imageUrl = "http://img3.douban.com/mpic/s4356687.jpg";		
+		String id = bundle.getString("id");
+		imageUrl = bundle.getString("imageurl");
+		//String id = "3926132";
+		//imageUrl = "http://img3.douban.com/mpic/s4356687.jpg";		
 		
 		
 		url = "http://192.158.31.250/search/"+id+"/";
