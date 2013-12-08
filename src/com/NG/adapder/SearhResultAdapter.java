@@ -1,6 +1,7 @@
 package com.NG.adapder;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.NG.cache.ImageLoader;
@@ -8,6 +9,7 @@ import com.NG.entity.SingleEntity;
 import com.NG.moviesearchbeta.R;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +87,13 @@ public class SearhResultAdapter extends BaseAdapter{
 		viewHolder.contentTextView.setText("µ¼ÑÝ£º" + movieBriefPojo.getAuthorName());		
 		viewHolder.mImageView.setBackgroundResource(R.drawable.rc_item_bg);
 		
+		String url = movieBriefPojo.getImageUrl();
+		Log.d(TAG, url);
+		if (!mBusy) {
+			mImageLoader.DisplayImage(url, viewHolder.mImageView, false);
+		} else {
+			mImageLoader.DisplayImage(url, viewHolder.mImageView, false);
+		}
 		
 		return convertView;
 	}

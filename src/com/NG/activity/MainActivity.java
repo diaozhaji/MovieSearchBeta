@@ -30,7 +30,6 @@ import android.widget.TextView;
 
 import com.NG.loader.SimpleInfoLoder;
 import com.NG.moviesearchbeta.R;
-import com.NG.adapder.InfoAdapter;
 import com.NG.adapder.SearhResultAdapter;
 import com.NG.entity.SingleEntity;
 
@@ -41,7 +40,7 @@ import com.NG.entity.SingleEntity;
 
 public class MainActivity extends ListActivity {
 
-	final static String TAG = "m_debug";
+	final static String TAG = "SearchMovie";
 	final static int LOAD_DATA = 1;
 
 	private ListView mlistView;// 存取搜索信息的列表控件
@@ -101,7 +100,6 @@ public class MainActivity extends ListActivity {
 			public void handleMessage(Message msg) {
 				if (msg.what == 0) {
 					// msg.obj是获取handler发送信息传来的数据
-					@SuppressWarnings("unchecked")
 					List<SingleEntity> seList = (ArrayList<SingleEntity>) msg.obj;
 					// 给ListView绑定数据
 					showall(seList);
@@ -126,6 +124,7 @@ public class MainActivity extends ListActivity {
 				aList = new SimpleInfoLoder().findXml(name);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			handler.sendMessage(handler.obtainMessage(0, aList));
@@ -142,7 +141,7 @@ public class MainActivity extends ListActivity {
 		mAdapater = new SearhResultAdapter(this, list);
 
 		mlistView.setAdapter(mAdapater);
-		//mlistView.setOnScrollListener(mScrollListener);
+		mlistView.setOnScrollListener(mScrollListener);
 
 		proDialog.dismiss();
 	}
@@ -185,6 +184,7 @@ public class MainActivity extends ListActivity {
 			default:
 				break;
 			}
+			Log.d(TAG,"scroll");
 			mAdapater.notifyDataSetChanged();
 		}
 

@@ -15,6 +15,7 @@ import org.xml.sax.SAXException;
 
 import com.NG.entity.MovieDetailEntity;
 import com.NG.entity.MovieDetaileEntityOld;
+import com.NG.utils.StringUtil;
 
 import android.util.Log;
 
@@ -57,7 +58,9 @@ public class MovieDetailInfoLoader {
 			movieDetailedPojo.setRating_average(jsonObject.getString("rating_average"));
 			Log.d(TAG, movieDetailedPojo.getRating_average());
 			// 导演
-			movieDetailedPojo.setDirectors(jsonObject.getString("directors"));
+			String directors = jsonObject.getString("directors");
+			directors = StringUtil.removeDelimiter(directors);
+			movieDetailedPojo.setDirectors(directors);
 			Log.d(TAG, movieDetailedPojo.getDirectors());
 			//年份
 			movieDetailedPojo.setYear(jsonObject.getString("year"));
@@ -69,10 +72,14 @@ public class MovieDetailInfoLoader {
 			movieDetailedPojo.setCountries(jsonObject.getString("countries"));
 			Log.d(TAG, "countriey:"+movieDetailedPojo.getCountries());
 			//类型
-			movieDetailedPojo.setGenres(jsonObject.getString("genres"));
+			String genres = jsonObject.getString("genres");
+			genres = StringUtil.removeDelimiter(genres);
+			movieDetailedPojo.setGenres(genres);
 			Log.d(TAG, "类型:"+movieDetailedPojo.getGenres());
 			//主演
-			movieDetailedPojo.setCasts(jsonObject.getString("casts"));
+			String casts = jsonObject.getString("casts");
+			casts = StringUtil.removeDelimiter(casts);
+			movieDetailedPojo.setCasts(casts);
 			Log.d(TAG, "主演:"+movieDetailedPojo.getCasts());
 			
 		} catch (JSONException e) {
