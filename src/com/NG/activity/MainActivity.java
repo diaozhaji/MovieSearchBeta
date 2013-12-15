@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.NG.loader.SimpleInfoLoder;
 import com.NG.moviesearchbeta.R;
@@ -76,7 +77,9 @@ public class MainActivity extends ListActivity {
 		search_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
 				proDialog.show();
+				
 				searchData();
 
 				// mHandler.sendEmptyMessage(LOAD_DATA);
@@ -137,12 +140,16 @@ public class MainActivity extends ListActivity {
 
 	public void showall(List<SingleEntity> list) {
 		mlistView = getListView();
+		if(list==null){
+			//没有结果情况
+			Toast.makeText(getApplicationContext(), "没有返回结果",
+					Toast.LENGTH_SHORT).show();
+		}else{
+			mAdapater = new SearhResultAdapter(this, list);
 
-		mAdapater = new SearhResultAdapter(this, list);
-
-		mlistView.setAdapter(mAdapater);
-		mlistView.setOnScrollListener(mScrollListener);
-
+			mlistView.setAdapter(mAdapater);
+			mlistView.setOnScrollListener(mScrollListener);
+		}	
 		proDialog.dismiss();
 	}
 
