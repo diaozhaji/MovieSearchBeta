@@ -518,21 +518,22 @@ public final class R {
         public static final int search_weibo_bg_press=0x7f02002f;
         public static final int searchbar_background=0x7f020030;
         public static final int searh_button_back=0x7f020031;
-        public static final int splash_img=0x7f020032;
-        public static final int square_search_filter_bg=0x7f020033;
-        public static final int square_search_filter_nor=0x7f020034;
-        public static final int square_search_filter_press=0x7f020035;
-        public static final int title_button=0x7f020036;
-        public static final int title_button_back=0x7f020037;
-        public static final int title_button_back_press=0x7f020038;
-        public static final int title_button_normal=0x7f020039;
-        public static final int title_button_right=0x7f02003a;
-        public static final int title_button_right_press=0x7f02003b;
-        public static final int title_button_selected=0x7f02003c;
-        public static final int title_img=0x7f02003d;
-        public static final int triangle=0x7f02003e;
-        public static final int triangle_page=0x7f02003f;
-        public static final int widget_block_selected=0x7f020040;
+        public static final int splash_1=0x7f020032;
+        public static final int splash_img=0x7f020033;
+        public static final int square_search_filter_bg=0x7f020034;
+        public static final int square_search_filter_nor=0x7f020035;
+        public static final int square_search_filter_press=0x7f020036;
+        public static final int title_button=0x7f020037;
+        public static final int title_button_back=0x7f020038;
+        public static final int title_button_back_press=0x7f020039;
+        public static final int title_button_normal=0x7f02003a;
+        public static final int title_button_right=0x7f02003b;
+        public static final int title_button_right_press=0x7f02003c;
+        public static final int title_button_selected=0x7f02003d;
+        public static final int title_img=0x7f02003e;
+        public static final int triangle=0x7f02003f;
+        public static final int triangle_page=0x7f020040;
+        public static final int widget_block_selected=0x7f020041;
     }
     public static final class id {
         public static final int ScrollView01=0x7f0a0014;

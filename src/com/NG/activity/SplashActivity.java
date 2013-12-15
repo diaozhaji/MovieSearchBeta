@@ -35,11 +35,12 @@ public class SplashActivity extends Activity{
         System.out.println(density);
         
         setContentView(R.layout.splash);
+        /*
 		tv = (TextView)findViewById(R.id.splash_text);
         tv.setText("your screen height = "+displayHeight +"\n"
         			+"width = "+displayWidth+"\n"
         			+"density = "+density);
-        
+        */
         imageview = (ImageView)findViewById(R.id.splash_img);
 		
 		imageview.setOnClickListener(new Button.OnClickListener(){

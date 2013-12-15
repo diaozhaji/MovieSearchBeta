@@ -25,8 +25,8 @@
 
                 <ImageView
                     android:id="@+id/detail_activity_img"
-                    android:layout_width="160px"
-                    android:layout_height="240px"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
                     android:src="@drawable/detail_img_loading" />
 
                 <LinearLayout
@@ -73,12 +73,6 @@
                         android:layout_marginBottom="10dp"
                         android:text="主演:"
                         android:textColor="@color/black" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:src="@drawable/detial_button_play" />
                 </LinearLayout>
             </LinearLayout>
 

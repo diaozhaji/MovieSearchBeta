@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xml.sax.SAXException;
@@ -44,6 +45,7 @@ public class MovieDetailInfoLoader {
 		}		
 
 		JSONObject jsonObject = null;
+		JSONArray comments = null;
 		
 		try {
 			jsonObject = new JSONObject(stringBuilder.toString());
@@ -69,7 +71,9 @@ public class MovieDetailInfoLoader {
 			movieDetailedPojo.setCollect_count(jsonObject.getString("collect_count"));
 			Log.d(TAG, movieDetailedPojo.getCollect_count());
 			//地区
-			movieDetailedPojo.setCountries(jsonObject.getString("countries"));
+			String countries = jsonObject.getString("countries");
+			countries = StringUtil.removeDelimiter(countries);
+			movieDetailedPojo.setCountries(countries);
 			Log.d(TAG, "countriey:"+movieDetailedPojo.getCountries());
 			//类型
 			String genres = jsonObject.getString("genres");
@@ -81,6 +85,10 @@ public class MovieDetailInfoLoader {
 			casts = StringUtil.removeDelimiter(casts);
 			movieDetailedPojo.setCasts(casts);
 			Log.d(TAG, "主演:"+movieDetailedPojo.getCasts());
+			
+			comments = jsonObject.getJSONArray("comments");
+			//comments.getJSONObject(0).getString("user_comment");
+			Log.d(TAG, "comments :"+comments.getJSONObject(2).getString("user_comment"));
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

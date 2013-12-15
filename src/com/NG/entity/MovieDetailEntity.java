@@ -26,6 +26,7 @@ public class MovieDetailEntity {
 	private String reviews_count;	//影评数量
 	private String year;			//年代
 	private String summary_segmentation;	//???
+	private Object comments;
 	/*
 	private String subtype;			//条目分类, movie或者tv
 	private String image_small;
