@@ -41,6 +41,7 @@ public class MovieDetailActivity extends Activity{
 	private TextView ratingView;
 	private TextView directorsView;
 	private TextView castsView;
+	private TextView userTagsView;
 	private TextView countriesView;
 	private TextView collectView;
 	private TextView genresView;
@@ -105,6 +106,7 @@ public class MovieDetailActivity extends Activity{
 		ratingView  = (TextView)findViewById(R.id.rating);
 		directorsView = (TextView)findViewById(R.id.directors);
 		castsView = (TextView)findViewById(R.id.casts);
+		userTagsView = (TextView)findViewById(R.id.user_tags);
 		countriesView = (TextView)findViewById(R.id.countries);
 		collectView = (TextView)findViewById(R.id.collect_count);
 		genresView  = (TextView)findViewById(R.id.genres);
@@ -145,6 +147,7 @@ public class MovieDetailActivity extends Activity{
 				ratingView.setText(mMovie.getRating_average());				
 				directorsView.setText("导演："+mMovie.getDirectors());
 				castsView.setText("演员："+mMovie.getCasts());
+				userTagsView.setText("用户标签："+mMovie.getUser_tags());
 				countriesView.setText("地区："+mMovie.getCountries());
 				collectView.setText("人气："+mMovie.getCollect_count());
 				genresView.setText("类型："+mMovie.getGenres());

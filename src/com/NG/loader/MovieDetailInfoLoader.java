@@ -85,6 +85,11 @@ public class MovieDetailInfoLoader {
 			casts = StringUtil.removeDelimiter(casts);
 			movieDetailedPojo.setCasts(casts);
 			Log.d(TAG, "主演:"+movieDetailedPojo.getCasts());
+			//用户标签
+			String userTags = jsonObject.getString("user_tags");
+			userTags = StringUtil.removeDelimiter(userTags);
+			movieDetailedPojo.setUser_tags(userTags);
+			Log.d(TAG, "用户标签："+userTags);
 			
 			comments = jsonObject.getJSONArray("comments");
 			//comments.getJSONObject(0).getString("user_comment");

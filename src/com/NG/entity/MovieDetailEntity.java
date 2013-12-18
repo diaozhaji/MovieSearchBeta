@@ -27,6 +27,9 @@ public class MovieDetailEntity {
 	private String year;			//年代
 	private String summary_segmentation;	//???
 	private Object comments;
+	
+	private String user_tags;		//用户标签 字符串
+	
 	/*
 	private String subtype;			//条目分类, movie或者tv
 	private String image_small;
@@ -45,6 +48,12 @@ public class MovieDetailEntity {
 
 	 */
 	
+	public String getUser_tags() {
+		return user_tags;
+	}
+	public void setUser_tags(String user_tags) {
+		this.user_tags = user_tags;
+	}
 	public String getTitle() {
 		return title;
 	}
