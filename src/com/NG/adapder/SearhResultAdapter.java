@@ -84,7 +84,8 @@ public class SearhResultAdapter extends BaseAdapter{
 		SingleEntity movieBriefPojo = aList.get(position);
 		
 		viewHolder.mTextView.setText(movieBriefPojo.getMovieName());
-		viewHolder.contentTextView.setText("µ¼ÑÝ£º" + movieBriefPojo.getAuthorName());		
+		viewHolder.contentTextView.setText("µ¼ÑÝ£º" + movieBriefPojo.getAuthorName()
+				+"\n");		
 		viewHolder.mImageView.setBackgroundResource(R.drawable.rc_item_bg);
 		
 		String url = movieBriefPojo.getImageUrl();
@@ -102,6 +103,7 @@ public class SearhResultAdapter extends BaseAdapter{
 		TextView mTextView;
 		TextView contentTextView;
 		ImageView mImageView;
+		
 	}
 
 }

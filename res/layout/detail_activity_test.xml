@@ -178,12 +178,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/text2"
+                            <ListView 
+                                android:id="@+id/short_comment_list"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
- />
+                                >
+                            </ListView>
                         </LinearLayout>
 
                         <LinearLayout

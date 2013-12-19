@@ -11,6 +11,8 @@ public class SingleEntity {
 	private String title;//电影名称属性
 	private String firstUrl;//链接属性
 	private String imageUrl;//图片链接属性
+	private String adjs;
+	
 	public String getImageUrl() {
 		return imageUrl;
 	}
@@ -34,6 +36,12 @@ public class SingleEntity {
 	}
 	public void setMovieName(String movieName) {
 		this.title = movieName;
+	}
+	public String getAdjs() {
+		return adjs;
+	}
+	public void setAdjs(String adj) {
+		this.adjs = adj;
 	}
 
 }

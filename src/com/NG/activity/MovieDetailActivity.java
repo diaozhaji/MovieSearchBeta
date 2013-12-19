@@ -3,9 +3,11 @@ package com.NG.activity;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,17 +17,20 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.NG.adapder.ShortCommentAdapter;
 import com.NG.entity.MovieDetailEntity;
+import com.NG.entity.ShortComment;
 import com.NG.loader.MovieDetailInfoLoader;
 import com.NG.moviesearchbeta.R;
 
 
 public class MovieDetailActivity extends Activity{
 	final static String TAG = "MovieDetailActivity";
-	
+	private Context mContext;
 	private String url;
 	private String imageUrl;
 	private ProgressDialog proDialog;
@@ -34,6 +39,9 @@ public class MovieDetailActivity extends Activity{
 	private MovieDetailInfoLoader movieInfo;
 	
 	private TabHost tabhost;
+	private ListView shortCommentsListView;
+	private ShortCommentAdapter mAdapter;
+	private List<ShortComment> shortCommentList;
 	//Views
 	private TextView titleView;
 	private TextView summaryView;
@@ -54,7 +62,7 @@ public class MovieDetailActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.detail_activity_test);
-		
+		mContext = this;
 		initView();
 		
 		
@@ -96,11 +104,13 @@ public class MovieDetailActivity extends Activity{
                 .setContent(R.id.content1));     
         tabhost.addTab(tabhost.newTabSpec("tab2")     
                 .setIndicator("短    评",getResources().getDrawable(R.drawable.icon))     
-                .setContent(R.id.text2));     
+                .setContent(R.id.short_comment_list));     
         tabhost.addTab(tabhost.newTabSpec("tab3")     
                 .setIndicator("相关电影",getResources().getDrawable(R.drawable.icon))     
                 .setContent(R.id.text3));
-		
+        
+        shortCommentsListView = (ListView)findViewById(R.id.short_comment_list);
+        
 		image = (ImageView)findViewById(R.id.detail_activity_img);
 		summaryView = (TextView)findViewById(R.id.detail_summary);
 		ratingView  = (TextView)findViewById(R.id.rating);
@@ -159,6 +169,15 @@ public class MovieDetailActivity extends Activity{
 				if (summary.length() > maxLen) {
 					summaryView.setText("\t"+summary.substring(0, maxLen) + "...");
 				}*/
+				
+				shortCommentList = mMovie.getShort_comments();
+				
+				Log.d(TAG,shortCommentList.size()+"个");
+				Log.d(TAG, shortCommentList.get(2).getComment());
+				
+				mAdapter = new ShortCommentAdapter( mContext , shortCommentList);
+				shortCommentsListView.setAdapter(mAdapter);
+				
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

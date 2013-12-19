@@ -1,4 +1,7 @@
 package com.NG.entity;
+
+import java.util.List;
+
 /**
  * @author jiyuan
  * Movie Entity
@@ -26,8 +29,15 @@ public class MovieDetailEntity {
 	private String reviews_count;	//影评数量
 	private String year;			//年代
 	private String summary_segmentation;	//???
-	private Object comments;
 	
+	private List<ShortComment> short_comments;
+	
+	public List<ShortComment> getShort_comments() {
+		return short_comments;
+	}
+	public void setShort_comments(List<ShortComment> short_comments) {
+		this.short_comments = short_comments;
+	}
 	private String user_tags;		//用户标签 字符串
 	
 	/*

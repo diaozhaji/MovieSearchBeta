@@ -16,13 +16,14 @@ import org.xml.sax.SAXException;
 
 import com.NG.entity.MovieDetailEntity;
 import com.NG.entity.MovieDetaileEntityOld;
+import com.NG.entity.ShortComment;
 import com.NG.utils.StringUtil;
 
 import android.util.Log;
 
 public class MovieDetailInfoLoader {
 	private static final String TAG = "MovieDetailInfoLoader";
-	
+	private List<ShortComment> mlist = new ArrayList();
 	public MovieDetailInfoLoader(){
 		Log.d(TAG, "constractor()  do thing");
 	}
@@ -45,7 +46,7 @@ public class MovieDetailInfoLoader {
 		}		
 
 		JSONObject jsonObject = null;
-		JSONArray comments = null;
+		JSONArray commentsJson = null;
 		
 		try {
 			jsonObject = new JSONObject(stringBuilder.toString());
@@ -91,9 +92,20 @@ public class MovieDetailInfoLoader {
 			movieDetailedPojo.setUser_tags(userTags);
 			Log.d(TAG, "用户标签："+userTags);
 			
-			comments = jsonObject.getJSONArray("comments");
+			commentsJson = jsonObject.getJSONArray("comments");
 			//comments.getJSONObject(0).getString("user_comment");
-			Log.d(TAG, "comments :"+comments.getJSONObject(2).getString("user_comment"));
+			Log.d(TAG, "comments :"+commentsJson.getJSONObject(2).getString("user_comment"));
+			
+			//测试数据
+			ShortComment sc = new ShortComment();
+			//sc.setComment("this is comment");
+			sc.setUserName("myName");
+			
+			for(int i=0;i<10;i++){
+				sc.setComment( i+"comment" );
+				mlist.add(sc);
+			}
+			movieDetailedPojo.setShort_comments(mlist);
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

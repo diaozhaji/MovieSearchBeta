@@ -536,7 +536,7 @@ public final class R {
     }
     public static final class id {
         public static final int ScrollView01=0x7f0a0015;
-        public static final int action_settings=0x7f0a0023;
+        public static final int action_settings=0x7f0a0024;
         public static final int all_content=0x7f0a0002;
         public static final int all_title=0x7f0a0001;
         public static final int allimageview=0x7f0a0000;
@@ -549,26 +549,27 @@ public final class R {
         public static final int directors=0x7f0a0006;
         public static final int edittext=0x7f0a001c;
         public static final int genres=0x7f0a000e;
-        public static final int layout_title_txt=0x7f0a0021;
+        public static final int layout_title_txt=0x7f0a0022;
         public static final int rating=0x7f0a0005;
         public static final int search_button=0x7f0a001d;
         public static final int search_logo=0x7f0a001b;
         public static final int search_text_layout=0x7f0a001a;
         public static final int searchbar=0x7f0a0019;
+        public static final int short_comment_list=0x7f0a0012;
+        public static final int short_comment_text=0x7f0a001e;
         public static final int singleimageview=0x7f0a0016;
         public static final int singletext=0x7f0a0018;
         public static final int singletextview=0x7f0a0017;
-        public static final int splash_img=0x7f0a001e;
-        public static final int splash_text=0x7f0a001f;
+        public static final int splash_img=0x7f0a001f;
+        public static final int splash_text=0x7f0a0020;
         public static final int tab1=0x7f0a000a;
         public static final int tab2=0x7f0a0011;
         public static final int tab3=0x7f0a0013;
         public static final int tabhost=0x7f0a0009;
         public static final int text1=0x7f0a0003;
-        public static final int text2=0x7f0a0012;
         public static final int text3=0x7f0a0014;
-        public static final int title_button_back=0x7f0a0022;
-        public static final int title_layout=0x7f0a0020;
+        public static final int title_button_back=0x7f0a0023;
+        public static final int title_layout=0x7f0a0021;
         public static final int user_tags=0x7f0a0008;
         public static final int year=0x7f0a000f;
     }
@@ -579,8 +580,9 @@ public final class R {
         public static final int detail_show=0x7f030003;
         public static final int main=0x7f030004;
         public static final int search_main=0x7f030005;
-        public static final int splash=0x7f030006;
-        public static final int title_layout=0x7f030007;
+        public static final int short_comment_show=0x7f030006;
+        public static final int splash=0x7f030007;
+        public static final int title_layout=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f090000;
