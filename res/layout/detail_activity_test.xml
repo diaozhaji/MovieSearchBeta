@@ -100,7 +100,8 @@
                     <TabWidget
                         android:id="@android:id/tabs"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="wrap_content" 
+                        >
                     </TabWidget>
 
                     <FrameLayout
@@ -161,7 +162,7 @@
                                     android:layout_marginBottom="10dp"
                                     android:layout_marginTop="10dp"
                                     android:text="剧情简介"
-                                    android:textColor="#0a5cad"
+                                    android:textColor="#61b835"
                                     android:textSize="20sp" />
 
                                 <TextView
@@ -180,8 +181,9 @@
                             android:orientation="vertical" >
                             <ListView 
                                 android:id="@+id/short_comment_list"
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
                                 >
                             </ListView>
                         </LinearLayout>

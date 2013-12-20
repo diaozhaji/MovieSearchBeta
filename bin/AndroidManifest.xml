@@ -29,6 +29,10 @@
             android:name="com.NG.activity.MovieDetailActivity"
             android:label="电影简介" >
         </activity>
+        <activity
+            android:name="com.NG.activity.ShortCommentActivity"
+            android:label="短评测试" >
+        </activity>
     </application>
     
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>

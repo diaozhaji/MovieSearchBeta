@@ -49,6 +49,7 @@ public class SplashActivity extends Activity{
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
     			intent.setClass(SplashActivity.this,MainActivity.class);
+    			//intent.setClass(SplashActivity.this,ShortCommentActivity.class);
     			startActivity(intent);          		
     			SplashActivity.this.finish();
 			}

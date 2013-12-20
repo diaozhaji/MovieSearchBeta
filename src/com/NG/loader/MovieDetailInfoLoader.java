@@ -23,7 +23,7 @@ import android.util.Log;
 
 public class MovieDetailInfoLoader {
 	private static final String TAG = "MovieDetailInfoLoader";
-	private List<ShortComment> mlist = new ArrayList();
+	//private List<ShortComment> mlist = new ArrayList<ShortComment>();
 	public MovieDetailInfoLoader(){
 		Log.d(TAG, "constractor()  do thing");
 	}
@@ -32,6 +32,7 @@ public class MovieDetailInfoLoader {
 				throws IOException, ParserConfigurationException,SAXException {
 		List<MovieDetailEntity> result = new ArrayList<MovieDetailEntity>();
 		MovieDetailEntity movieDetailedPojo = new MovieDetailEntity();
+		List<ShortComment> mlist = new ArrayList<ShortComment>();
 		
 		URL url = new URL(singleUrl);
 		Log.d(TAG, singleUrl);

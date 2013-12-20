@@ -32,12 +32,6 @@ public class MovieDetailEntity {
 	
 	private List<ShortComment> short_comments;
 	
-	public List<ShortComment> getShort_comments() {
-		return short_comments;
-	}
-	public void setShort_comments(List<ShortComment> short_comments) {
-		this.short_comments = short_comments;
-	}
 	private String user_tags;		//ÓÃ»§±êÇ© ×Ö·û´®
 	
 	/*
@@ -173,5 +167,11 @@ public class MovieDetailEntity {
 		this.ratings_count = ratings_count;
 	}
 	
+	public List<ShortComment> getShort_comments() {
+		return short_comments;
+	}
+	public void setShort_comments(List<ShortComment> short_comments) {
+		this.short_comments = short_comments;
+	}
 	
 }
