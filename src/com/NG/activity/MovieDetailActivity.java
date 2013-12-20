@@ -16,12 +16,14 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.NG.adapder.ShortCommentAdapter;
+import com.NG.adapter.ShortCommentAdapter;
 import com.NG.entity.MovieDetailEntity;
 import com.NG.entity.ShortComment;
 import com.NG.loader.MovieDetailInfoLoader;
@@ -173,10 +175,29 @@ public class MovieDetailActivity extends Activity{
 				shortCommentList = mMovie.getShort_comments();
 				
 				Log.d(TAG,shortCommentList.size()+"¸ö");
-				Log.d(TAG, shortCommentList.get(2).getComment());
+				Log.d(TAG, shortCommentList.get(5).getComment());
 				
 				mAdapter = new ShortCommentAdapter( mContext , shortCommentList);
 				shortCommentsListView.setAdapter(mAdapter);
+				shortCommentsListView.setOnScrollListener(new OnScrollListener(){
+
+					@Override
+					public void onScroll(AbsListView view, int firstVisibleItem,
+							int visibleItemCount, int totalItemCount) {
+						// TODO Auto-generated method stub
+						Log.d(TAG,"scroll");
+						mAdapter.notifyDataSetChanged();
+					}
+
+					@Override
+					public void onScrollStateChanged(AbsListView view, int scrollState) {
+						// TODO Auto-generated method stub
+						
+					}
+		        	
+		        	
+		        });
+				Log.d(TAG,mAdapter.getCount() + "madapter");
 				
 			} catch (Exception e) {
 				// TODO: handle exception

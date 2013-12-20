@@ -1,4 +1,4 @@
-package com.NG.adapder;
+package com.NG.adapter;
 
 
 import java.util.ArrayList;

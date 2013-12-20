@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 import com.NG.loader.SimpleInfoLoder;
 import com.NG.moviesearchbeta.R;
-import com.NG.adapder.SearhResultAdapter;
+import com.NG.adapter.SearhResultAdapter;
 import com.NG.entity.SingleEntity;
 
 /**

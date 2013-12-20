@@ -1,12 +1,14 @@
-package com.NG.adapder;
+package com.NG.adapter;
 
 import java.util.List;
 
-import com.NG.adapder.SearhResultAdapter.ViewHolder;
+import com.NG.adapter.SearhResultAdapter.ViewHolder;
 import com.NG.entity.ShortComment;
+import com.NG.entity.SingleEntity;
 import com.NG.moviesearchbeta.R;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,20 +57,23 @@ public class ShortCommentAdapter extends BaseAdapter {
 			convertView = LayoutInflater.from(mContext)
 					.inflate(R.layout.short_comment_show, null);
 			viewHolder = new ViewHolder();
-			viewHolder.shortCommentView = (TextView) convertView
+			viewHolder.mTextView = (TextView) convertView
 					.findViewById(R.id.short_comment_text);
 			convertView.setTag(viewHolder);
-		}
-		else{
+		}else{
 			viewHolder = (ViewHolder) convertView.getTag();
-		}
+		}		
 		ShortComment mSC = shortCommentList.get(position);
-		viewHolder.shortCommentView.setText(mSC.getUserName()+"  :  "+mSC.getComment());
+		
+		viewHolder.mTextView.setText(mSC.getComment());
+		
 		
 		return convertView;
 	}
-
+	
 	static class ViewHolder {
-		TextView shortCommentView;
+		TextView mTextView;
+		
 	}
+
 }
