@@ -48,8 +48,8 @@ public class SplashActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-    			intent.setClass(SplashActivity.this,MainActivity.class);
-    			//intent.setClass(SplashActivity.this,ShortCommentActivity.class);
+    			//intent.setClass(SplashActivity.this,MainActivity.class);
+    			intent.setClass(SplashActivity.this,ShortCommentActivity.class);
     			startActivity(intent);          		
     			SplashActivity.this.finish();
 			}

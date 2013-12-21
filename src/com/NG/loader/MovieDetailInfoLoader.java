@@ -93,20 +93,20 @@ public class MovieDetailInfoLoader {
 			movieDetailedPojo.setUser_tags(userTags);
 			Log.d(TAG, "用户标签："+userTags);
 			
-			//commentsJson = jsonObject.getJSONArray("comments");
-			//comments.getJSONObject(0).getString("user_comment");
+			commentsJson = jsonObject.getJSONArray("comments");
+			Log.d(TAG, "commentsJson's length is:"+commentsJson.length());
+			mlist = StringUtil.jsonArrayToList(commentsJson);
 			//Log.d(TAG, "comments :"+commentsJson.getJSONObject(2).getString("user_comment"));
 			
-			//测试数据
-			
-			
+			//测试数据			
+			/*
 			for(int i=0;i<10;i++){
 				ShortComment sc = new ShortComment();
 				sc.setUserName("myName");
 				sc.setComment( "comment" + i);
 				mlist.add(sc);
 				sc = null;
-			}
+			}*/
 			movieDetailedPojo.setShort_comments(mlist);
 			
 		} catch (JSONException e) {

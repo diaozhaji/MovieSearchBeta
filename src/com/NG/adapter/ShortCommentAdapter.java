@@ -65,7 +65,7 @@ public class ShortCommentAdapter extends BaseAdapter {
 		}		
 		ShortComment mSC = shortCommentList.get(position);
 		
-		viewHolder.mTextView.setText(mSC.getComment());
+		viewHolder.mTextView.setText(mSC.getUserName()+"  £º  "+mSC.getComment());
 		
 		
 		return convertView;

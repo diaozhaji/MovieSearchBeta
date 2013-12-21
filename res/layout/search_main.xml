@@ -3,7 +3,7 @@
     android:id="@+id/searchbar"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/list_search_left" >
+    android:background="@drawable/list_search_left_2" >
 
     <RelativeLayout
         android:id="@+id/search_text_layout"

@@ -15,13 +15,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TabWidget;
 import android.widget.TextView;
 
 import com.NG.adapter.ShortCommentAdapter;
@@ -98,22 +103,10 @@ public class MovieDetailActivity extends Activity{
 			
 		});
 		
-		tabhost = (TabHost)findViewById(R.id.tabhost);  
-        tabhost.setup();
+		//tabhost 简单化简了下
+		initTabhost();
         
-        tabhost.addTab(tabhost.newTabSpec("tab1")     
-                .setIndicator("详    情",getResources().getDrawable(R.drawable.icon
-                		))     
-                .setContent(R.id.content1));     
-        tabhost.addTab(tabhost.newTabSpec("tab2")     
-                .setIndicator("短    评",getResources().getDrawable(R.drawable.icon))     
-                .setContent(R.id.short_comment_list));     
-        tabhost.addTab(tabhost.newTabSpec("tab3")     
-                .setIndicator("相关电影",getResources().getDrawable(R.drawable.icon))     
-                .setContent(R.id.text3));
-        
-        shortCommentsListView = (ListView)findViewById(R.id.short_comment_list);
-        
+        //tab1 view
 		image = (ImageView)findViewById(R.id.detail_activity_img);
 		summaryView = (TextView)findViewById(R.id.detail_summary);
 		ratingView  = (TextView)findViewById(R.id.rating);
@@ -125,12 +118,66 @@ public class MovieDetailActivity extends Activity{
 		genresView  = (TextView)findViewById(R.id.genres);
 		yearView = (TextView)findViewById(R.id.year);
 		
+		//tab2 view
+        shortCommentsListView = (ListView)findViewById(R.id.short_comment_list);
 		
+        //ProgressDialog
 		proDialog = new ProgressDialog(this);
 		proDialog.setTitle(R.string.loading);
 		proDialog.setMessage("请您耐心等待...");	
 		
 	}
+	
+	private void initTabhost(){
+		tabhost = (TabHost)findViewById(R.id.tabhost);  
+        tabhost.setup();
+        
+        tabhost.addTab(tabhost.newTabSpec("tab1")     
+                .setIndicator("详    情")     
+                .setContent(R.id.content1));     
+        tabhost.addTab(tabhost.newTabSpec("tab2")     
+                .setIndicator("短    评")     
+                .setContent(R.id.short_comment_list));     
+        tabhost.addTab(tabhost.newTabSpec("tab3")     
+                .setIndicator("相关电影")     
+                .setContent(R.id.text3));
+        
+        // 初始化设置一次标签背景   
+        updateTabStyle(tabhost);   
+           
+        // 当某个Tab被选中时，则更新背景样式   
+        tabhost.setOnTabChangedListener(new OnTabChangeListener() {   
+            @Override   
+            public void onTabChanged(String tabId) {   
+                updateTabStyle(tabhost);   
+            }   
+        });   
+        
+        
+	}
+	
+	/**  
+     * 更新Tab标签的背景图  
+     * @param tabHost  
+     */   
+    private void updateTabStyle(final TabHost mTabHost) {
+    	TabWidget tabWidget = mTabHost.getTabWidget();   
+        for (int i = 0; i < tabWidget.getChildCount(); i++) {   
+        	LinearLayout tabView = (LinearLayout) mTabHost.getTabWidget().getChildAt(i);   
+               
+            TextView text = (TextView) tabWidget.getChildAt(i).findViewById(android.R.id.title); 
+            
+            if (mTabHost.getCurrentTab() == i) {   
+                // 选中   
+                tabView.setBackgroundResource(R.drawable.bg_tab_selected);   
+                //text.setTextColor(this.getResources().getColorStateList(android.R.color.black));   
+            } else {   
+                // 未选中   
+                tabView.setBackgroundResource(R.drawable.bg_tab_normal);   
+                //text.setTextColor(this.getResources().getColorStateList(android.R.color.darker_gray));   
+            }   
+        }
+    }
 
 
 	private void initData() throws IOException {
