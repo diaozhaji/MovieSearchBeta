@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -29,11 +30,13 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import com.NG.adapter.OtherslikePictureAdapter;
 import com.NG.adapter.ShortCommentAdapter;
 import com.NG.entity.MovieDetailEntity;
 import com.NG.entity.ShortComment;
 import com.NG.loader.MovieDetailInfoLoader;
 import com.NG.moviesearchbeta.R;
+import com.NG.utils.ListHeightUtils;
 
 
 public class MovieDetailActivity extends Activity{
@@ -66,13 +69,25 @@ public class MovieDetailActivity extends Activity{
 	//button
 	private ImageView backBtn;
 	
+	
+	//gridview
+	private GridView gridView; 
+    //图片的文字标题 
+    private String[] titles = new String[] 
+    { "pic1", "pic2", "pic3", "pic4", "pic5", "pic6", "pic7", "pic8", "pic9"}; 
+    //图片ID数组 
+    private int[] images = new int[]{        
+            R.drawable.s3818395, R.drawable.s3818395, R.drawable.s3818395,  
+            R.drawable.s3818395, R.drawable.s3818395, R.drawable.s3818395,  
+            R.drawable.s3818395, R.drawable.s3818395,R.drawable.s3818395  
+    }; 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.detail_activity_test);
 		mContext = this;
 		initView();
-		
 		
 		try {
 			initData();
@@ -120,7 +135,13 @@ public class MovieDetailActivity extends Activity{
 		
 		//tab2 view
         shortCommentsListView = (ListView)findViewById(R.id.short_comment_list);
-		
+        //ListHeightUtils.setListViewHeightBasedOnChildren(shortCommentsListView);
+        
+        //tab3 view
+        gridView = (GridView) findViewById(R.id.tab3); 
+		OtherslikePictureAdapter ad = new OtherslikePictureAdapter(titles, images, mContext); 
+        gridView.setAdapter(ad); 
+        
         //ProgressDialog
 		proDialog = new ProgressDialog(this);
 		proDialog.setTitle(R.string.loading);
@@ -140,7 +161,7 @@ public class MovieDetailActivity extends Activity{
                 .setContent(R.id.short_comment_list));     
         tabhost.addTab(tabhost.newTabSpec("tab3")     
                 .setIndicator("相关电影")     
-                .setContent(R.id.text3));
+                .setContent(R.id.tab3));
         
         // 初始化设置一次标签背景   
         updateTabStyle(tabhost);   
@@ -182,10 +203,10 @@ public class MovieDetailActivity extends Activity{
 
 	private void initData() throws IOException {
 		Bundle bundle = getIntent().getExtras();		
-		//String id = bundle.getString("id");
-		//imageUrl = bundle.getString("imageurl");
-		String id = "3541415";
-		imageUrl = "http://img3.douban.com/mpic/s4356687.jpg";		
+		String id = bundle.getString("id");
+		imageUrl = bundle.getString("imageurl");
+		//String id = "3541415";
+		//imageUrl = "http://img3.douban.com/mpic/s4356687.jpg";		
 		
 		
 		url = "http://192.158.31.250/search/"+id+"/";
@@ -223,13 +244,17 @@ public class MovieDetailActivity extends Activity{
 				shortCommentList = mMovie.getShort_comments();
 				Log.d(TAG, shortCommentList.get(2).getComment());
 				
-				mAdapter = new ShortCommentAdapter( mContext , shortCommentList);
-				shortCommentsListView.setAdapter(mAdapter);
-				
-				
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
+			if(shortCommentList==null){
+				
+			}
+			else{
+				mAdapter = new ShortCommentAdapter( mContext , shortCommentList);
+				shortCommentsListView.setAdapter(mAdapter);
+			}
+			
 			
 			new Thread(){
 				public void run(){

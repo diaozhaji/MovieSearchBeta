@@ -7,11 +7,12 @@ package com.NG.entity;
  *
  */
 public class SingleEntity {
-	private String authorName;//电影导演名称属性
-	private String title;//电影名称属性
-	private String firstUrl;//链接属性
-	private String imageUrl;//图片链接属性
-	private String adjs;
+	private String authorName;		//电影导演名称属性
+	private String title;			//电影名称属性
+	private String firstUrl;		//链接属性
+	private String imageUrl;		//图片链接属性
+	private String adjs;			//形容词
+	private String user_tags;		//用户标签
 	
 	public String getImageUrl() {
 		return imageUrl;
@@ -43,5 +44,12 @@ public class SingleEntity {
 	public void setAdjs(String adj) {
 		this.adjs = adj;
 	}
+	public String getUser_tags() {
+		return user_tags;
+	}
+	public void setUser_tags(String user_tags) {
+		this.user_tags = user_tags;
+	}
+	
 
 }

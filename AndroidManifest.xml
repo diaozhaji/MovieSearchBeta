@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme" >
         <activity 
             android:name="com.NG.activity.SplashActivity"
-            android:label="title">     
+            android:label="心情电影">     
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

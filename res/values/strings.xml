@@ -2,7 +2,7 @@
 <resources>
 
     <string name="action_settings">Settings</string>
-    <string name="app_name">豆瓣搜索</string>
+    <string name="app_name">心情电影</string>
     
     <string name="search_searchbutton">搜索</string>
     <string name="square_search_filter_all">电影</string>

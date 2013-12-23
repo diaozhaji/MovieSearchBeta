@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.NG.entity.SingleEntity;
+import com.NG.utils.StringUtil;
 
 /**
  * 
@@ -63,6 +64,13 @@ public class SimpleInfoLoder {
 				movieBriefPojo.setAuthorName(jsonObject.getString("directors"));
 				movieBriefPojo.setFirstUrl(jsonObject.getString("subject_id"));
 				movieBriefPojo.setImageUrl(jsonObject.getString("image_small"));
+				String raw_adjs = jsonObject.getString("raw_adjs");
+				raw_adjs = StringUtil.dealAdjString(raw_adjs);
+				movieBriefPojo.setAdjs(raw_adjs);
+				String user_tags = jsonObject.getString("raw_user_tags");
+				user_tags = StringUtil.dealUserTagsString(user_tags);
+				movieBriefPojo.setUser_tags(user_tags);
+				
 				result.add(movieBriefPojo);
 
 			} catch (JSONException e) {

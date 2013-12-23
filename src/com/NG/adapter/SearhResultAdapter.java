@@ -85,7 +85,9 @@ public class SearhResultAdapter extends BaseAdapter{
 		
 		viewHolder.mTextView.setText(movieBriefPojo.getMovieName());
 		viewHolder.contentTextView.setText("导演：" + movieBriefPojo.getAuthorName()
-				+"\n");		
+				+"\n"+"情感："+movieBriefPojo.getAdjs()
+				+"\n"+"标签："+movieBriefPojo.getUser_tags()
+				);		
 		viewHolder.mImageView.setBackgroundResource(R.drawable.rc_item_bg);
 		
 		String url = movieBriefPojo.getImageUrl();
