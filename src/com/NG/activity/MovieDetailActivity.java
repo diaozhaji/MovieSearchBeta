@@ -33,6 +33,7 @@ import android.widget.TextView;
 import com.NG.adapter.OtherslikePictureAdapter;
 import com.NG.adapter.ShortCommentAdapter;
 import com.NG.entity.MovieDetailEntity;
+import com.NG.entity.OthersLike;
 import com.NG.entity.ShortComment;
 import com.NG.loader.MovieDetailInfoLoader;
 import com.NG.moviesearchbeta.R;
@@ -53,6 +54,8 @@ public class MovieDetailActivity extends Activity{
 	private ListView shortCommentsListView;
 	private ShortCommentAdapter mAdapter;
 	private List<ShortComment> shortCommentList;
+	private List<OthersLike> othersLikeList;
+	
 	//Views
 	private TextView titleView;
 	private TextView summaryView;
@@ -85,7 +88,7 @@ public class MovieDetailActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.detail_activity_test);
+		setContentView(R.layout.detail_activity);
 		mContext = this;
 		initView();
 		
@@ -139,8 +142,8 @@ public class MovieDetailActivity extends Activity{
         
         //tab3 view
         gridView = (GridView) findViewById(R.id.tab3); 
-		OtherslikePictureAdapter ad = new OtherslikePictureAdapter(titles, images, mContext); 
-        gridView.setAdapter(ad); 
+		
+         
         
         //ProgressDialog
 		proDialog = new ProgressDialog(this);
@@ -241,18 +244,27 @@ public class MovieDetailActivity extends Activity{
 					summaryView.setText("\t"+summary.substring(0, maxLen) + "...");
 				}*/
 				
-				shortCommentList = mMovie.getShort_comments();
-				Log.d(TAG, shortCommentList.get(2).getComment());
+				shortCommentList = mMovie.getShort_comments();				
+				othersLikeList = mMovie.getOthers_like();
+				
 				
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			if(shortCommentList==null){
-				
+			if(shortCommentList==null){	
+				System.out.println("没有短评");
 			}
 			else{
 				mAdapter = new ShortCommentAdapter( mContext , shortCommentList);
 				shortCommentsListView.setAdapter(mAdapter);
+			}
+			
+			if(othersLikeList == null){
+				System.out.println("没有其他用户也喜欢");
+			}
+			else{
+				OtherslikePictureAdapter oladapter = new OtherslikePictureAdapter(mContext,othersLikeList);
+				gridView.setAdapter(oladapter);
 			}
 			
 			
@@ -291,7 +303,7 @@ public class MovieDetailActivity extends Activity{
 			Log.d(TAG, "run()");
 			try {
 				mMovie = movieInfo.parserMovieJson(url);
-					
+				
 				mHandler.sendEmptyMessage(choice);
 
 			} catch (Exception e) {

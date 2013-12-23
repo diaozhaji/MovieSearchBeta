@@ -31,7 +31,7 @@ public class MovieDetailEntity {
 	private String summary_segmentation;	//???
 	
 	private List<ShortComment> short_comments;
-	
+	private List<OthersLike> others_like;
 	private String user_tags;		//ÓÃ»§±êÇ© ×Ö·û´®
 	
 	/*
@@ -173,5 +173,12 @@ public class MovieDetailEntity {
 	public void setShort_comments(List<ShortComment> short_comments) {
 		this.short_comments = short_comments;
 	}
+	public List<OthersLike> getOthers_like() {
+		return others_like;
+	}
+	public void setOthers_like(List<OthersLike> others_like) {
+		this.others_like = others_like;
+	}
+	
 	
 }

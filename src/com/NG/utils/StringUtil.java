@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.NG.entity.OthersLike;
 import com.NG.entity.ShortComment;
 
 /**
@@ -24,10 +25,7 @@ public class StringUtil {
 	public static String dealAdjString(String s){
 		String a[] = s.split(",");
 		String result = "";
-		for(int i=0;i<a.length;i++){
-			System.out.println(a[i]);
-		}
-		
+
 		for(int i=0;i<a.length;i++){
 			String b[] = a[i].split("=");
 			result += b[0]+" ";	
@@ -37,9 +35,7 @@ public class StringUtil {
 	public static String dealUserTagsString(String s){
 		String a[] = s.split("гд");
 		String result = "";
-		for(int i=0;i<a.length;i++){
-			System.out.println(a[i]);
-		}
+
 		for(int i=0;i<a.length;i++){
 			String b[] = a[i].split("<>");
 			result += b[0]+" ";
@@ -53,7 +49,7 @@ public class StringUtil {
 			
 			sc.setUserName(j.getString("user_name"));
 			sc.setComment(j.getString("user_comment"));
-			System.out.println(j.getString("user_comment"));
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,7 +59,7 @@ public class StringUtil {
 		
 	}
 	
-	public static List<ShortComment> jsonArrayToList(JSONArray ja){
+	public static List<ShortComment> jsonArrayToShortCommentList(JSONArray ja){
 		int length = ja.length();
 		ShortComment sc = new ShortComment();
 		List<ShortComment> scList = new ArrayList<ShortComment>();
@@ -81,7 +77,44 @@ public class StringUtil {
 			
 		}
 		
-		return scList;
+		return scList;		
+	}
+	
+	public static OthersLike jsonObjectToOthersLike(JSONObject j){		
+		OthersLike ol = new OthersLike();	
+		try {
+			
+			ol.setName(j.getString("name"));
+			ol.setSubject_id(j.getString("subject_id"));
+			ol.setImage_url(j.getString("image_url"));
+			System.out.println(j.getString("image_url"));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ol;
+		
+	}
+	
+	
+	public static List<OthersLike> jsonArrayToOthersLikeList(JSONArray ja){
+		int length = ja.length();
+		OthersLike ol = new OthersLike();
+		List<OthersLike> olList = new ArrayList<OthersLike>();
+		for(int i=0;i<length;i++){
+			try {
+				
+				ol = jsonObjectToOthersLike(ja.getJSONObject(i));
+				olList.add(ol);
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		System.out.println("OthersLike : "+olList.toString());
+		return olList;
 		
 	}
 	

@@ -69,7 +69,7 @@ public class SearhResultAdapter extends BaseAdapter{
 		ViewHolder viewHolder = null;
 		if (convertView == null) {
 			convertView = LayoutInflater.from(mContext)
-					.inflate(R.layout.all_single_show, null);
+					.inflate(R.layout.search_result_item, null);
 			viewHolder = new ViewHolder();
 			viewHolder.mTextView = (TextView) convertView
 					.findViewById(R.id.all_title);

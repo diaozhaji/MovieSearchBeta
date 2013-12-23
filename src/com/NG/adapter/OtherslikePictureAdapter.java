@@ -3,6 +3,8 @@ package com.NG.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.NG.cache.ImageLoader;
+import com.NG.entity.OthersLike;
 import com.NG.entity.Picture;
 import com.NG.moviesearchbeta.R;
 
@@ -17,25 +19,22 @@ import android.widget.TextView;
 
 public class OtherslikePictureAdapter extends BaseAdapter{ 
 	private LayoutInflater inflater; 
-    private List<Picture> pictures; 
- 
-    public OtherslikePictureAdapter(String[] titles, int[] images, Context context) 
-    { 
-        super(); 
-        pictures = new ArrayList<Picture>(); 
-        inflater = LayoutInflater.from(context); 
-        for (int i = 0; i < images.length; i++) 
-        { 
-            Picture picture = new Picture(titles[i], images[i]); 
-            pictures.add(picture); 
-        } 
-    } 
+    private List<OthersLike> olList;
+    private ImageLoader mImageLoader;
+    
+    public OtherslikePictureAdapter(Context context , List<OthersLike> list){
+    	super(); 
+        inflater = LayoutInflater.from(context);
+        olList = list;
+        mImageLoader = new ImageLoader(context);
+    }
+    
  
     public int getCount() 
     { 
-        if (null != pictures) 
+        if (null != olList) 
         { 
-            return pictures.size(); 
+            return olList.size(); 
         } else
         { 
             return 0; 
@@ -44,7 +43,7 @@ public class OtherslikePictureAdapter extends BaseAdapter{
  
     public Object getItem(int position) 
     { 
-        return pictures.get(position); 
+        return olList.get(position); 
     } 
  
     public long getItemId(int position) 
@@ -66,8 +65,13 @@ public class OtherslikePictureAdapter extends BaseAdapter{
         { 
             viewHolder = (ViewHolder) convertView.getTag(); 
         } 
-        viewHolder.title.setText(pictures.get(position).getTitle()); 
-        viewHolder.image.setImageResource(pictures.get(position).getImageId()); 
+        OthersLike ol = olList.get(position);
+        
+        viewHolder.title.setText(ol.getName());
+        
+        String url = ol.getImage_url();
+        mImageLoader.DisplayImage(url, viewHolder.image, false);
+        
         return convertView; 
     }
 

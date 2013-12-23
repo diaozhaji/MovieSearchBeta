@@ -2,6 +2,7 @@ package com.NG.activity;
 
 
 import com.NG.moviesearchbeta.R;
+import com.NG.tabhosttest.ViewPagerActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -49,7 +50,7 @@ public class SplashActivity extends Activity{
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
     			intent.setClass(SplashActivity.this,MainActivity.class);
-    			//intent.setClass(SplashActivity.this,ShortCommentActivity.class);
+    			//intent.setClass(SplashActivity.this,ViewPagerActivity.class);
     			startActivity(intent);          		
     			SplashActivity.this.finish();
 			}

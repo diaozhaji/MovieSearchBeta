@@ -55,7 +55,7 @@ public class ShortCommentAdapter extends BaseAdapter {
 		ViewHolder viewHolder = null;
 		if (convertView == null) {
 			convertView = LayoutInflater.from(mContext)
-					.inflate(R.layout.short_comment_show, null);
+					.inflate(R.layout.short_comment_item, null);
 			viewHolder = new ViewHolder();
 			viewHolder.mTextView = (TextView) convertView
 					.findViewById(R.id.short_comment_text);

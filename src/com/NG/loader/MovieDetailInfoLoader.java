@@ -16,6 +16,7 @@ import org.xml.sax.SAXException;
 
 import com.NG.entity.MovieDetailEntity;
 import com.NG.entity.MovieDetaileEntityOld;
+import com.NG.entity.OthersLike;
 import com.NG.entity.ShortComment;
 import com.NG.utils.StringUtil;
 
@@ -32,7 +33,8 @@ public class MovieDetailInfoLoader {
 				throws IOException, ParserConfigurationException,SAXException {
 		List<MovieDetailEntity> result = new ArrayList<MovieDetailEntity>();
 		MovieDetailEntity movieDetailedPojo = new MovieDetailEntity();
-		List<ShortComment> mlist = new ArrayList<ShortComment>();
+		List<ShortComment> sclist = new ArrayList<ShortComment>();
+		List< OthersLike > ollist = new ArrayList<OthersLike>();
 		
 		URL url = new URL(singleUrl);
 		Log.d(TAG, singleUrl);
@@ -48,6 +50,7 @@ public class MovieDetailInfoLoader {
 
 		JSONObject jsonObject = null;
 		JSONArray commentsJson = null;
+		JSONArray otherslikeJson = null;
 		
 		try {
 			jsonObject = new JSONObject(stringBuilder.toString());
@@ -95,19 +98,15 @@ public class MovieDetailInfoLoader {
 			
 			commentsJson = jsonObject.getJSONArray("comments");
 			Log.d(TAG, "commentsJson's length is:"+commentsJson.length());
-			mlist = StringUtil.jsonArrayToList(commentsJson);
+			sclist = StringUtil.jsonArrayToShortCommentList(commentsJson);
 			//Log.d(TAG, "comments :"+commentsJson.getJSONObject(2).getString("user_comment"));
+			movieDetailedPojo.setShort_comments(sclist);
 			
-			//≤‚ ‘ ˝æ›			
-			/*
-			for(int i=0;i<10;i++){
-				ShortComment sc = new ShortComment();
-				sc.setUserName("myName");
-				sc.setComment( "comment" + i);
-				mlist.add(sc);
-				sc = null;
-			}*/
-			movieDetailedPojo.setShort_comments(mlist);
+			otherslikeJson = jsonObject.getJSONArray("others_like");
+			ollist = StringUtil.jsonArrayToOthersLikeList(otherslikeJson);
+			movieDetailedPojo.setOthers_like(ollist);
+			
+			
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

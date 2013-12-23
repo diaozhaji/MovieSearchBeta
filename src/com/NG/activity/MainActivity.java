@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AbsListView.OnScrollListener;
@@ -29,8 +31,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.NG.loader.SearchExampleLoader;
 import com.NG.loader.SimpleInfoLoder;
 import com.NG.moviesearchbeta.R;
+import com.NG.adapter.SearchExampleAdapter;
 import com.NG.adapter.SearhResultAdapter;
 import com.NG.entity.SingleEntity;
 
@@ -43,16 +47,21 @@ public class MainActivity extends ListActivity {
 
 	final static String TAG = "SearchMovie";
 	final static int LOAD_DATA = 1;
-
+	
+	private static boolean flag = false;	//用于管理第一个List和结果List
+	private static boolean isExit = false;	//用于管理是否退出应用
+	private Context mContext;
 	private ListView mlistView;// 存取搜索信息的列表控件
-
-	private SearhResultAdapter mAdapater;// 用来加载BaseAdapater
+	
+	private SearchExampleAdapter sAdapter;	// 用于开始时的list
+	private SearhResultAdapter mAdapater;	// 用来加载BaseAdapater
 
 	private ImageView search_button;// 搜索按钮
 	public EditText editText;// 搜索框
+	
 	public List<SingleEntity> aList;// MovieBriefPojo 返回的泛型LIST
-
 	private SingleEntity mbp;// 传递点击事件的 击点
+	public List<String> sList;
 
 	public Spinner sp;// 选择要搜索的类型
 
@@ -66,10 +75,64 @@ public class MainActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		initView();
+		mContext = this;
+		
 		initProDialog();
+		initView();
+		initData();
+		
 	}
+
+	private void initData() {
+		// TODO Auto-generated method stub
+		sList = new ArrayList<String> ();
+		
+		getStringList();
+		
+		
+		
+	}
+	private void getStringList(){
+		/*
+		String[] a = {"我想看章子怡的电影","帮我找张艺谋的电影",
+				"搜一下欢乐的电影","给爷找点惊悚的电影",
+				"你能找到感人的电影么","来一打刺激的电影试试"};
+		for(int i=0;i<a.length;i++){
+			sList.add(a[i]);
+		}*/
+		proDialog.show();
+		new Thread(downloadExample).start();
+		handler = new Handler() {
+			public void handleMessage(Message msg) {
+				if (msg.what == 0) {
+					// msg.obj是获取handler发送信息传来的数据
+					sList = (ArrayList<String>) msg.obj;
+					System.out.println("接收到了handler的数据");
+				}
+				
+				sAdapter = new SearchExampleAdapter(mContext,sList);
+				mlistView.setAdapter(sAdapter);
+				proDialog.dismiss();
+			}
+		};
+		
+	}
+	Runnable downloadExample = new Runnable() {
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+			try {
+				sList = new SearchExampleLoader().getExample();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			handler.sendMessage(handler.obtainMessage(0, sList));
+		}
+	};
 
 	private void initView() {
 		mbp = new SingleEntity();
@@ -87,14 +150,18 @@ public class MainActivity extends ListActivity {
 		});
 
 		editText = (EditText) findViewById(R.id.edittext);
-
+		
+		mlistView = getListView();
+		
 	}
 
 	public void searchData() {
 		name = editText.getText().toString();
 		if (name.trim().length() < 1) {
 			openOptionDialog("搜索条件");
+			proDialog.dismiss();
 			return;
+			
 		} else {
 			new Thread(downloadRun).start();
 		}
@@ -110,6 +177,7 @@ public class MainActivity extends ListActivity {
 				}
 			}
 		};
+		//proDialog.dismiss();
 	}
 
 	void initProDialog() {
@@ -139,7 +207,7 @@ public class MainActivity extends ListActivity {
 	 */
 
 	public void showall(List<SingleEntity> list) {
-		mlistView = getListView();
+		
 		if(list==null){
 			//没有结果情况
 			Toast.makeText(getApplicationContext(), "没有返回结果",
@@ -149,6 +217,7 @@ public class MainActivity extends ListActivity {
 
 			mlistView.setAdapter(mAdapater);
 			mlistView.setOnScrollListener(mScrollListener);
+			flag = true;
 		}	
 		proDialog.dismiss();
 	}
@@ -158,16 +227,22 @@ public class MainActivity extends ListActivity {
 	 */
 
 	protected void onListItemClick(ListView l, View view, int position, long id) {
-		mbp = aList.get(position);
-		Intent intent = new Intent();
-		// intent.setClass(MainActivity.this, DetailActivity.class);
-		intent.setClass(MainActivity.this, MovieDetailActivity.class);
-		Bundle bundle = new Bundle();
-		bundle.putString("id", mbp.getFirstUrl().toString());
-		bundle.putString("imageurl", mbp.getImageUrl().toString());
-		// bundle.putString("type", "电影");
-		intent.putExtras(bundle);
-		startActivity(intent);
+		if(!flag){
+			editText.setText(sList.get(position));
+		}
+		if(flag){
+			mbp = aList.get(position);
+			Intent intent = new Intent();
+			// intent.setClass(MainActivity.this, DetailActivity.class);
+			intent.setClass(MainActivity.this, MovieDetailActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("id", mbp.getFirstUrl().toString());
+			bundle.putString("imageurl", mbp.getImageUrl().toString());
+			// bundle.putString("type", "电影");
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}
+		
 	}
 	
 	/**
@@ -212,5 +287,31 @@ public class MainActivity extends ListActivity {
 					public void onClick(DialogInterface dialog, int which) {
 					}
 				}).show();
+	}
+	
+	
+    
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		System.out.println("TabHost_Index.java onKeyDown");
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if(flag == true){
+				
+				mlistView.setAdapter(sAdapter);
+				
+				flag = false;
+			}
+			else{
+				if(isExit == false ) {
+					isExit = true;
+					Toast.makeText(this, "再按一次后退键退出应用程序", Toast.LENGTH_SHORT).show();
+
+				} else {
+					finish();
+					System.exit(0);
+				}
+			}
+		}
+		return false;
 	}
 }
