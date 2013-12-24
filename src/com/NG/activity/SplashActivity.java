@@ -2,7 +2,7 @@ package com.NG.activity;
 
 
 import com.NG.moviesearchbeta.R;
-import com.NG.tabhosttest.ViewPagerActivity;
+import com.NG.viewpager.ViewPagerActivity;
 
 import android.app.Activity;
 import android.content.Intent;

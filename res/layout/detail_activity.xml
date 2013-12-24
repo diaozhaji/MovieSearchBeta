@@ -101,7 +101,8 @@
                 <FrameLayout
                     android:id="@android:id/tabcontent"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent" >
+
                     <ScrollView
                         android:id="@+id/tab1"
                         android:layout_width="match_parent"
@@ -167,19 +168,12 @@
                         </LinearLayout>
                     </ScrollView>
 
-                    <LinearLayout
-                        android:id="@+id/tab2"
+                    <ListView
+                        android:id="@+id/short_comment_list"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="fill_parent"
                         android:orientation="vertical" >
-
-                        <ListView
-                            android:id="@+id/short_comment_list"
-                            android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
-                            android:orientation="vertical" >
-                        </ListView>
-                    </LinearLayout>
+                    </ListView>
 
                     <GridView
                         android:id="@+id/tab3"

@@ -29,7 +29,7 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 
-public class ViewPagerActivity extends Activity {
+public class TabViewPagerActivity extends Activity {
 
 	List<View> listViews;
 
@@ -47,7 +47,7 @@ public class ViewPagerActivity extends Activity {
 		
 		setContentView(R.layout.viewpager);
 		
-		context = ViewPagerActivity.this;
+		context = TabViewPagerActivity.this;
 		
 		pager  = (ViewPager) findViewById(R.id.viewpager);
 		

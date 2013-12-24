@@ -233,9 +233,9 @@ public class MainActivity extends ListActivity {
 		if(flag){
 			mbp = aList.get(position);
 			Intent intent = new Intent();
-			intent.setClass(MainActivity.this, ShortCommentActivity.class);
+			//intent.setClass(MainActivity.this, ShortCommentActivity.class);
 			
-			//intent.setClass(MainActivity.this, MovieDetailActivity.class);
+			intent.setClass(MainActivity.this, MovieDetailActivity.class);
 			Bundle bundle = new Bundle();
 			bundle.putString("id", mbp.getFirstUrl().toString());
 			bundle.putString("imageurl", mbp.getImageUrl().toString());
