@@ -67,9 +67,17 @@ public class SimpleInfoLoder {
 				String raw_adjs = jsonObject.getString("raw_adjs");
 				raw_adjs = StringUtil.dealAdjString(raw_adjs);
 				movieBriefPojo.setAdjs(raw_adjs);
+				String year = jsonObject.getString("year");
+				year = StringUtil.StringToYearMonth(year);
+				movieBriefPojo.setYear(year);
+				movieBriefPojo.setRating_average(jsonObject.getString("rating_average"));
+				movieBriefPojo.setCountries(jsonObject.getString("countries"));
+				//‘› ±√ª”√
 				String user_tags = jsonObject.getString("raw_user_tags");
 				user_tags = StringUtil.dealUserTagsString(user_tags);
 				movieBriefPojo.setUser_tags(user_tags);
+				
+				
 				
 				result.add(movieBriefPojo);
 

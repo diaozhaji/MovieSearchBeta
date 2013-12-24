@@ -48,9 +48,13 @@ public class ShortCommentActivity extends Activity{
 		setContentView(R.layout.short_comment_acitvity);
 		mContext = this;
 		initView();
-		Log.d(TAG, "url");
 		
-		url = "http://192.158.31.250/search/3649049/";
+		
+		Bundle bundle = getIntent().getExtras();		
+		String id = bundle.getString("id");
+		Log.d(TAG, "url");
+		url = "http://192.158.31.250/search/"+id+"/";
+		//url = "http://192.158.31.250/search/3649049/";
 		
 		new Thread(new LoadData()).start();
 		proDialog.show();

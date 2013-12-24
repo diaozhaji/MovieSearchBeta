@@ -84,9 +84,11 @@ public class SearhResultAdapter extends BaseAdapter{
 		SingleEntity movieBriefPojo = aList.get(position);
 		
 		viewHolder.mTextView.setText(movieBriefPojo.getMovieName());
-		viewHolder.contentTextView.setText("导演：" + movieBriefPojo.getAuthorName()
+		viewHolder.contentTextView.setText(
+				"导演：" + movieBriefPojo.getAuthorName()
+				+"\n"+"地区："+movieBriefPojo.getCountries()
+				+"\n"+"时间："+movieBriefPojo.getYear()+"\t\t"+"评分："+movieBriefPojo.getRating_average()
 				+"\n"+"情感："+movieBriefPojo.getAdjs()
-				+"\n"+"标签："+movieBriefPojo.getUser_tags()
 				);		
 		viewHolder.mImageView.setBackgroundResource(R.drawable.rc_item_bg);
 		

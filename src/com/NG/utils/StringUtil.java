@@ -118,5 +118,12 @@ public class StringUtil {
 		
 	}
 	
+	public static String StringToYearMonth(String s){
+		
+		String year =s.substring(0, 4)+"-"+s.substring(4, 6);
+		return year;
+		
+	}
+	
 	
 }
