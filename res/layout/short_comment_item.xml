@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:text="user  :   comment"
         android:layout_margin="10dp"
+        android:textColor="#444444"
         />
 
 </LinearLayout>

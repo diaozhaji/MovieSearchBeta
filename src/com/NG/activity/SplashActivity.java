@@ -51,6 +51,7 @@ public class SplashActivity extends Activity{
 				Intent intent = new Intent();
     			intent.setClass(SplashActivity.this,MainActivity.class);
     			//intent.setClass(SplashActivity.this,ViewPagerActivity.class);
+				//intent.setClass(SplashActivity.this,detailTest.class);
     			startActivity(intent);          		
     			SplashActivity.this.finish();
 			}

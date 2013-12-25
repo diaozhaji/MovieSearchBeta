@@ -17,7 +17,7 @@ public class SearchExampleLoader {
 		
 		List<String> result = new ArrayList<String>();
 		
-		String uString = "http://192.158.31.250/search/navigation_list/";
+		String uString = "http://192.158.31.250/search/navigation_list/?type=0";
 		URL url = new URL(uString);
 
 		StringBuilder builder = new StringBuilder();

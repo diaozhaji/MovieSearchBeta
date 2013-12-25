@@ -75,15 +75,6 @@ public class MovieDetailActivity extends Activity{
 	
 	//gridview
 	private GridView gridView; 
-    //图片的文字标题 
-    private String[] titles = new String[] 
-    { "pic1", "pic2", "pic3", "pic4", "pic5", "pic6", "pic7", "pic8", "pic9"}; 
-    //图片ID数组 
-    private int[] images = new int[]{        
-            R.drawable.s3818395, R.drawable.s3818395, R.drawable.s3818395,  
-            R.drawable.s3818395, R.drawable.s3818395, R.drawable.s3818395,  
-            R.drawable.s3818395, R.drawable.s3818395,R.drawable.s3818395  
-    }; 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +149,7 @@ public class MovieDetailActivity extends Activity{
         
         tabhost.addTab(tabhost.newTabSpec("tab1")     
                 .setIndicator("详    情")     
-                .setContent(R.id.content1));     
+                .setContent(R.id.content1));  
         tabhost.addTab(tabhost.newTabSpec("tab2")     
                 .setIndicator("短    评")     
                 .setContent(R.id.short_comment_list));     
@@ -250,20 +241,29 @@ public class MovieDetailActivity extends Activity{
 				
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("有些没有");
 			}
-			if(shortCommentList==null){	
+			if(shortCommentList.size() == 0){	
 				System.out.println("没有短评");
+				ShortComment sc = new ShortComment();
+				sc.setUserName("暂无该电影短评信息");
+				shortCommentList.add(sc);
+				mAdapter = new ShortCommentAdapter( mContext , shortCommentList);
+				mAdapter.getItem(0); 
+				shortCommentsListView.setAdapter(mAdapter);
 			}
 			else{
 				mAdapter = new ShortCommentAdapter( mContext , shortCommentList);
+				mAdapter.getItem(0); 
 				shortCommentsListView.setAdapter(mAdapter);
 			}
 			
-			if(othersLikeList == null){
+			if(othersLikeList.size() == 0){
 				System.out.println("没有其他用户也喜欢");
 			}
 			else{
 				OtherslikePictureAdapter oladapter = new OtherslikePictureAdapter(mContext,othersLikeList);
+				oladapter.getItem(0);
 				gridView.setAdapter(oladapter);
 			}
 			
@@ -282,6 +282,7 @@ public class MovieDetailActivity extends Activity{
 						
 					} catch (Exception e) {
 						// TODO: handle exception
+						System.out.println("详情页图片读取失败");
 					}
 				}
 				

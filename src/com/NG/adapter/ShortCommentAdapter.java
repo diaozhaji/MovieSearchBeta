@@ -76,4 +76,9 @@ public class ShortCommentAdapter extends BaseAdapter {
 		
 	}
 
+	public void setSelectItem(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

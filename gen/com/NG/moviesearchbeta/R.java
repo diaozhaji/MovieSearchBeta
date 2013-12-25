@@ -143,6 +143,7 @@ public final class R {
         /** 暗宝石绿 
          */
         public static final int deepskyblue=0x7f050088;
+        public static final int detail_bg_white=0x7f050094;
         /** 石蓝色 
          */
         public static final int dimgray=0x7f05006d;
@@ -544,7 +545,7 @@ public final class R {
         public static final int widget_block_selected=0x7f020049;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a002c;
+        public static final int action_settings=0x7f0a0029;
         public static final int all_content=0x7f0a001f;
         public static final int all_title=0x7f0a001e;
         public static final int allimageview=0x7f0a001d;
@@ -558,11 +559,10 @@ public final class R {
         public static final int directors=0x7f0a0003;
         public static final int edittext=0x7f0a001b;
         public static final int genres=0x7f0a000b;
-        public static final int iv_mark=0x7f0a0026;
-        public static final int layout_title_txt=0x7f0a0028;
+        public static final int layout_title_txt=0x7f0a0025;
         public static final int otherslike_image=0x7f0a0015;
         public static final int otherslike_title=0x7f0a0016;
-        public static final int pagertab=0x7f0a002b;
+        public static final int pagertab=0x7f0a0028;
         public static final int rating=0x7f0a0002;
         public static final int root=0x7f0a0014;
         public static final int search_button=0x7f0a001c;
@@ -579,36 +579,33 @@ public final class R {
         public static final int tab3=0x7f0a000f;
         public static final int tabhost=0x7f0a0006;
         public static final int text1=0x7f0a0000;
-        public static final int title_button_back=0x7f0a0029;
-        public static final int title_layout=0x7f0a0027;
+        public static final int title_button_back=0x7f0a0026;
+        public static final int title_layout=0x7f0a0024;
         public static final int tv1=0x7f0a0011;
         public static final int tv2=0x7f0a0012;
         public static final int tv3=0x7f0a0013;
-        public static final int tv_show=0x7f0a0024;
-        public static final int tv_title=0x7f0a0025;
         public static final int user_tags=0x7f0a0005;
-        public static final int viewpager=0x7f0a002a;
+        public static final int viewpager=0x7f0a0027;
         public static final int year=0x7f0a000c;
     }
     public static final class layout {
         public static final int choice_list_item=0x7f030000;
         public static final int detail_activity=0x7f030001;
-        public static final int fragment1=0x7f030002;
-        public static final int fragment2=0x7f030003;
-        public static final int fragment3=0x7f030004;
-        public static final int main=0x7f030005;
-        public static final int picture_item=0x7f030006;
-        public static final int search_example_item=0x7f030007;
-        public static final int search_main=0x7f030008;
-        public static final int search_result_item=0x7f030009;
-        public static final int short_comment_acitvity=0x7f03000a;
-        public static final int short_comment_item=0x7f03000b;
-        public static final int splash=0x7f03000c;
-        public static final int sub=0x7f03000d;
-        public static final int tabwidget=0x7f03000e;
+        public static final int detail_activity_new_test=0x7f030002;
+        public static final int detail_summary=0x7f030003;
+        public static final int fragment1=0x7f030004;
+        public static final int fragment2=0x7f030005;
+        public static final int fragment3=0x7f030006;
+        public static final int main=0x7f030007;
+        public static final int picture_item=0x7f030008;
+        public static final int search_example_item=0x7f030009;
+        public static final int search_main=0x7f03000a;
+        public static final int search_result_item=0x7f03000b;
+        public static final int short_comment_acitvity=0x7f03000c;
+        public static final int short_comment_item=0x7f03000d;
+        public static final int splash=0x7f03000e;
         public static final int title_layout=0x7f03000f;
-        public static final int viewpager=0x7f030010;
-        public static final int viewpager_activity=0x7f030011;
+        public static final int viewpager_activity=0x7f030010;
     }
     public static final class menu {
         public static final int main=0x7f090000;

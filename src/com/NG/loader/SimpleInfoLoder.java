@@ -61,7 +61,7 @@ public class SimpleInfoLoder {
 				
 				SingleEntity movieBriefPojo = new SingleEntity();
 				movieBriefPojo.setMovieName(jsonObject.getString("title"));
-				movieBriefPojo.setAuthorName(jsonObject.getString("directors"));
+				movieBriefPojo.setAuthorName(jsonObject.getString("raw_directors"));
 				movieBriefPojo.setFirstUrl(jsonObject.getString("subject_id"));
 				movieBriefPojo.setImageUrl(jsonObject.getString("image_small"));
 				String raw_adjs = jsonObject.getString("raw_adjs");
