@@ -5,20 +5,24 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.NG.adapter.OtherslikePictureAdapter;
@@ -45,6 +49,9 @@ public class detailTest extends Activity {
 	private List<OthersLike> othersLikeList;
 
 	// Views
+	private FrameLayout tab1;
+	private FrameLayout tab2;
+	private FrameLayout tab3;
 	private TextView titleView;
 	private TextView summaryView;
 	private ImageView image;
@@ -59,14 +66,21 @@ public class detailTest extends Activity {
 
 	// button
 	private ImageView backBtn;
+	
+	//replace tab
+	private TextView button_tab1;
+	private TextView button_tab2;
+	private TextView button_tab3;
 
 	// gridview
 	private GridView gridView;
-
+	
+	private Drawable bg_tab_selected;
+	private Drawable bg_tab_normal;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.detail_activity);
+		setContentView(R.layout.detail_activity_new_test);
 		mContext = this;
 		initView();
 
@@ -95,7 +109,15 @@ public class detailTest extends Activity {
 			}
 
 		});
-
+		
+		button_tab1 = (TextView)findViewById(R.id.button_tab1);
+		button_tab2 = (TextView)findViewById(R.id.button_tab2);
+		button_tab3 = (TextView)findViewById(R.id.button_tab3);
+		
+		tab1 = (FrameLayout)findViewById(R.id.tab1);
+		tab2 = (FrameLayout)findViewById(R.id.tab2);
+		tab3 = (FrameLayout)findViewById(R.id.tab3);
+		
 		// tab1 view
 		image = (ImageView) findViewById(R.id.detail_activity_img);
 		summaryView = (TextView) findViewById(R.id.detail_summary);
@@ -109,11 +131,13 @@ public class detailTest extends Activity {
 		yearView = (TextView) findViewById(R.id.year);
 
 		// tab2 view
-		shortCommentsListView = (ListView) findViewById(R.id.short_comment_list);
+		shortCommentsListView = (ListView) findViewById(R.id.tab2_short_comment_list);
 		// ListHeightUtils.setListViewHeightBasedOnChildren(shortCommentsListView);
 
 		// tab3 view
-		gridView = (GridView) findViewById(R.id.tab3);
+		gridView = (GridView) findViewById(R.id.tab3_gridview);
+		
+		initTabButton();
 
 		// ProgressDialog
 		proDialog = new ProgressDialog(this);
@@ -122,12 +146,55 @@ public class detailTest extends Activity {
 
 	}
 
+	@SuppressLint("NewApi")
+	private void initTabButton() {
+		bg_tab_selected = getResources().getDrawable(R.drawable.bg_tab_selected);
+		bg_tab_normal = getResources().getDrawable(R.drawable.bg_tab_normal);
+		seeTab1();
+		
+		
+		// TODO Auto-generated method stub
+		button_tab1.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				seeTab1();
+				
+			}
+			
+		});
+		
+		button_tab2.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				seeTab2();
+			}
+			
+		});
+		
+		button_tab3.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				seeTab3();
+			}
+			
+		});
+	}
+
+	
+	
+
 	private void initData() throws IOException {
-		Bundle bundle = getIntent().getExtras();
-		String id = bundle.getString("id");
-		imageUrl = bundle.getString("imageurl");
-		//String id = "3541415";
-		//imageUrl = "http://img3.douban.com/mpic/s4356687.jpg";
+		//Bundle bundle = getIntent().getExtras();
+		//String id = bundle.getString("id");
+		//imageUrl = bundle.getString("imageurl");
+		String id = "3541415";
+		imageUrl = "http://img3.douban.com/mpic/s4356687.jpg";
 
 		url = "http://192.158.31.250/search/" + id + "/";
 
@@ -212,7 +279,6 @@ public class detailTest extends Activity {
 
 			proDialog.dismiss();
 			
-			gridView.setVisibility(View.GONE);
 
 		}
 	};
@@ -234,6 +300,40 @@ public class detailTest extends Activity {
 			}
 		}
 
+	}
+	
+	@SuppressLint("NewApi")
+	private void seeTab1() {
+		// TODO Auto-generated method stub
+		button_tab1.setBackground(bg_tab_selected);
+		button_tab2.setBackground(bg_tab_normal);
+		button_tab3.setBackground(bg_tab_normal);
+		tab1.setVisibility(View.VISIBLE);
+		tab2.setVisibility(View.GONE);
+		tab3.setVisibility(View.GONE);
+	}
+	@SuppressLint("NewApi")
+	private void seeTab2() {
+		// TODO Auto-generated method stub
+		button_tab1.setBackground(bg_tab_normal);
+		button_tab2.setBackground(bg_tab_selected);
+		button_tab3.setBackground(bg_tab_normal);
+		tab1.setVisibility(View.GONE);
+		tab2.setVisibility(View.VISIBLE);
+		tab3.setVisibility(View.GONE);
+		
+	}
+	@SuppressLint("NewApi")
+	private void seeTab3() {
+		// TODO Auto-generated method stub
+		button_tab1.setBackground(bg_tab_normal);
+		button_tab2.setBackground(bg_tab_normal);
+		button_tab3.setBackground(bg_tab_selected);
+		tab1.setVisibility(View.GONE);
+		tab2.setVisibility(View.GONE);
+		tab3.setVisibility(View.VISIBLE);
+		
+		
 	}
 
 }
