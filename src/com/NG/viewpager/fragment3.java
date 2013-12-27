@@ -1,4 +1,4 @@
-package com.NG.viewpager;
+锘縫ackage com.NG.viewpager;
 
 import java.util.List;
 
@@ -75,7 +75,7 @@ public class fragment3 extends Fragment {
 				
 			} catch (Exception e) {
 				// TODO: handle exception
-				System.out.println("没关相关电影");
+				System.out.println("娌″叧鐩稿叧鐢靛奖");
 			}
 			
 			//proDialog.dismiss();
@@ -108,7 +108,7 @@ public class fragment3 extends Fragment {
 		ViewGroup p = (ViewGroup) mMainView.getParent();
 		if (p != null) {
 			p.removeAllViewsInLayout();
-			Log.v("huahua", "fragment3-->移除已存在的View");
+			Log.v("huahua", "fragment3-->绉婚櫎宸插瓨鍦ㄧ殑View");
 		}
 
 		return mMainView;

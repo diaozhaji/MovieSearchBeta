@@ -1,4 +1,4 @@
-package com.NG.activity;
+ï»¿package com.NG.activity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -65,7 +65,7 @@ public class ShortCommentActivity extends Activity{
 		testListView = (ListView)findViewById(R.id.short_comment_activity_list);
 		proDialog = new ProgressDialog(this);
 		proDialog.setTitle(R.string.loading);
-		proDialog.setMessage("ÇëÄúÄÍĞÄµÈ´ı...");	
+		proDialog.setMessage("è¯·æ‚¨è€å¿ƒç­‰å¾…...");	
 		
 		movieInfo = new MovieDetailInfoLoader();
 	}

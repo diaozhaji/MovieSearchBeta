@@ -1,4 +1,4 @@
-package com.NG.activity;
+ï»¿package com.NG.activity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ import com.NG.entity.SingleEntity;
 
 /**
  * 
- * @author tianqiujie ³ÌĞòÈë¿Ú
+ * @author tianqiujie ç¨‹åºå…¥å£
  */
 
 public class MainActivity extends ListActivity {
@@ -48,28 +48,28 @@ public class MainActivity extends ListActivity {
 	final static String TAG = "SearchMovie";
 	final static int LOAD_DATA = 1;
 	
-	private static boolean flag = false;	//ÓÃÓÚ¹ÜÀíµÚÒ»¸öListºÍ½á¹ûList
-	private static boolean isExit = false;	//ÓÃÓÚ¹ÜÀíÊÇ·ñÍË³öÓ¦ÓÃ
+	private static boolean flag = false;	//ç”¨äºç®¡ç†ç¬¬ä¸€ä¸ªListå’Œç»“æœList
+	private static boolean isExit = false;	//ç”¨äºç®¡ç†æ˜¯å¦é€€å‡ºåº”ç”¨
 	private Context mContext;
-	private ListView mlistView;// ´æÈ¡ËÑË÷ĞÅÏ¢µÄÁĞ±í¿Ø¼ş
+	private ListView mlistView;// å­˜å–æœç´¢ä¿¡æ¯çš„åˆ—è¡¨æ§ä»¶
 	
-	private SearchExampleAdapter sAdapter;	// ÓÃÓÚ¿ªÊ¼Ê±µÄlist
-	private SearhResultAdapter mAdapater;	// ÓÃÀ´¼ÓÔØBaseAdapater
+	private SearchExampleAdapter sAdapter;	// ç”¨äºå¼€å§‹æ—¶çš„list
+	private SearhResultAdapter mAdapater;	// ç”¨æ¥åŠ è½½BaseAdapater
 
-	private ImageView search_button;// ËÑË÷°´Å¥
-	public EditText editText;// ËÑË÷¿ò
+	private ImageView search_button;// æœç´¢æŒ‰é’®
+	public EditText editText;// æœç´¢æ¡†
 	
-	public List<SingleEntity> aList;// MovieBriefPojo ·µ»ØµÄ·ºĞÍLIST
-	private SingleEntity mbp;// ´«µİµã»÷ÊÂ¼şµÄ »÷µã
+	public List<SingleEntity> aList;// MovieBriefPojo è¿”å›çš„æ³›å‹LIST
+	private SingleEntity mbp;// ä¼ é€’ç‚¹å‡»äº‹ä»¶çš„ å‡»ç‚¹
 	public List<String> sList;
 
-	public Spinner sp;// Ñ¡ÔñÒªËÑË÷µÄÀàĞÍ
+	public Spinner sp;// é€‰æ‹©è¦æœç´¢çš„ç±»å‹
 
 	private ProgressDialog proDialog;
 
 	private String name;
 	private Handler handler;
-	String[] types = { "ËÑµçÓ°" };
+	String[] types = { "æœç”µå½±" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -94,9 +94,9 @@ public class MainActivity extends ListActivity {
 	}
 	private void getStringList(){
 		/*
-		String[] a = {"ÎÒÏë¿´ÕÂ×ÓâùµÄµçÓ°","°ïÎÒÕÒÕÅÒÕÄ±µÄµçÓ°",
-				"ËÑÒ»ÏÂ»¶ÀÖµÄµçÓ°","¸øÒ¯ÕÒµã¾ªã¤µÄµçÓ°",
-				"ÄãÄÜÕÒµ½¸ĞÈËµÄµçÓ°Ã´","À´Ò»´ò´Ì¼¤µÄµçÓ°ÊÔÊÔ"};
+		String[] a = {"æˆ‘æƒ³çœ‹ç« å­æ€¡çš„ç”µå½±","å¸®æˆ‘æ‰¾å¼ è‰ºè°‹çš„ç”µå½±",
+				"æœä¸€ä¸‹æ¬¢ä¹çš„ç”µå½±","ç»™çˆ·æ‰¾ç‚¹æƒŠæ‚šçš„ç”µå½±",
+				"ä½ èƒ½æ‰¾åˆ°æ„Ÿäººçš„ç”µå½±ä¹ˆ","æ¥ä¸€æ‰“åˆºæ¿€çš„ç”µå½±è¯•è¯•"};
 		for(int i=0;i<a.length;i++){
 			sList.add(a[i]);
 		}*/
@@ -105,9 +105,9 @@ public class MainActivity extends ListActivity {
 		handler = new Handler() {
 			public void handleMessage(Message msg) {
 				if (msg.what == 0) {
-					// msg.objÊÇ»ñÈ¡handler·¢ËÍĞÅÏ¢´«À´µÄÊı¾İ
+					// msg.objæ˜¯è·å–handlerå‘é€ä¿¡æ¯ä¼ æ¥çš„æ•°æ®
 					sList = (ArrayList<String>) msg.obj;
-					System.out.println("½ÓÊÕµ½ÁËhandlerµÄÊı¾İ");
+					System.out.println("æ¥æ”¶åˆ°äº†handlerçš„æ•°æ®");
 				}
 				
 				sAdapter = new SearchExampleAdapter(mContext,sList);
@@ -158,7 +158,7 @@ public class MainActivity extends ListActivity {
 	public void searchData() {
 		name = editText.getText().toString();
 		if (name.trim().length() < 1) {
-			openOptionDialog("ËÑË÷Ìõ¼ş");
+			openOptionDialog("æœç´¢æ¡ä»¶");
 			proDialog.dismiss();
 			return;
 			
@@ -169,9 +169,9 @@ public class MainActivity extends ListActivity {
 		handler = new Handler() {
 			public void handleMessage(Message msg) {
 				if (msg.what == 0) {
-					// msg.objÊÇ»ñÈ¡handler·¢ËÍĞÅÏ¢´«À´µÄÊı¾İ
+					// msg.objæ˜¯è·å–handlerå‘é€ä¿¡æ¯ä¼ æ¥çš„æ•°æ®
 					List<SingleEntity> seList = (ArrayList<SingleEntity>) msg.obj;
-					// ¸øListView°ó¶¨Êı¾İ
+					// ç»™ListViewç»‘å®šæ•°æ®
 					showall(seList);
 
 				}
@@ -183,7 +183,7 @@ public class MainActivity extends ListActivity {
 	void initProDialog() {
 		proDialog = new ProgressDialog(this);
 		proDialog.setTitle(R.string.loading);
-		proDialog.setMessage("ÇëÄúÄÍĞÄµÈ´ı...");
+		proDialog.setMessage("è¯·æ‚¨è€å¿ƒç­‰å¾…...");
 	}
 
 	Runnable downloadRun = new Runnable() {
@@ -203,14 +203,14 @@ public class MainActivity extends ListActivity {
 	};
 
 	/**
-	 * @author tianqiujie Ìí¼Ó×Ô¶¨Òå²¼¾ÖÆ÷InfoAdapter
+	 * @author tianqiujie æ·»åŠ è‡ªå®šä¹‰å¸ƒå±€å™¨InfoAdapter
 	 */
 
 	public void showall(List<SingleEntity> list) {
 		
 		if(list==null){
-			//Ã»ÓĞ½á¹ûÇé¿ö
-			Toast.makeText(getApplicationContext(), "Ã»ÓĞ·µ»Ø½á¹û",
+			//æ²¡æœ‰ç»“æœæƒ…å†µ
+			Toast.makeText(getApplicationContext(), "æ²¡æœ‰è¿”å›ç»“æœ",
 					Toast.LENGTH_SHORT).show();
 		}else{
 			mAdapater = new SearhResultAdapter(this, list);
@@ -223,7 +223,7 @@ public class MainActivity extends ListActivity {
 	}
 
 	/**
-	 * @author tianqiujie Ìø×ªµ¥¸öµçÓ°µÄ½çÃæ ´«ÈëÍ¼Æ¬Á´½ÓºÍµã»÷Ë÷ÒıÖµ
+	 * @author tianqiujie è·³è½¬å•ä¸ªç”µå½±çš„ç•Œé¢ ä¼ å…¥å›¾ç‰‡é“¾æ¥å’Œç‚¹å‡»ç´¢å¼•å€¼
 	 */
 
 	protected void onListItemClick(ListView l, View view, int position, long id) {
@@ -240,7 +240,7 @@ public class MainActivity extends ListActivity {
 			Bundle bundle = new Bundle();
 			bundle.putString("id", mbp.getFirstUrl().toString());
 			bundle.putString("imageurl", mbp.getImageUrl().toString());
-			// bundle.putString("type", "µçÓ°");
+			// bundle.putString("type", "ç”µå½±");
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}
@@ -248,7 +248,7 @@ public class MainActivity extends ListActivity {
 	}
 	
 	/**
-	 * @author tianqiujie µ±listView¹ö¶¯Í£Ö¹ÒÔºó²Å¿ªÊ¼Òì²½¼ÓÔØÍ¼Æ¬
+	 * @author tianqiujie å½“listViewæ»šåŠ¨åœæ­¢ä»¥åæ‰å¼€å§‹å¼‚æ­¥åŠ è½½å›¾ç‰‡
 	 */
 	
 	OnScrollListener mScrollListener = new OnScrollListener() {
@@ -279,11 +279,11 @@ public class MainActivity extends ListActivity {
 		}
 	};
 
-	// ÌáÊ¾¿ò·½·¨
+	// æç¤ºæ¡†æ–¹æ³•
 	public void openOptionDialog(String string) {
-		new AlertDialog.Builder(this).setTitle("ÌáÊ¾")
-				.setMessage(string + "²»ÄÜÎª¿Õ!")
-				.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+		new AlertDialog.Builder(this).setTitle("æç¤º")
+				.setMessage(string + "ä¸èƒ½ä¸ºç©º!")
+				.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -306,7 +306,7 @@ public class MainActivity extends ListActivity {
 			else{
 				if(isExit == false ) {
 					isExit = true;
-					Toast.makeText(this, "ÔÙ°´Ò»´ÎºóÍË¼üÍË³öÓ¦ÓÃ³ÌĞò", Toast.LENGTH_SHORT).show();
+					Toast.makeText(this, "å†æŒ‰ä¸€æ¬¡åé€€é”®é€€å‡ºåº”ç”¨ç¨‹åº", Toast.LENGTH_SHORT).show();
 
 				} else {
 					finish();

@@ -1,4 +1,4 @@
-package com.NG.utils;
+ï»¿package com.NG.utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import com.NG.entity.ShortComment;
 public class StringUtil {
 	
 	public static String removeDelimiter(String s){
-		s = s.replace("£¤", "  ");
+		s = s.replace("ï¿¥", "  ");
 		return s;		
 	}
 	
@@ -33,7 +33,7 @@ public class StringUtil {
 		return result;
 	}
 	public static String dealUserTagsString(String s){
-		String a[] = s.split("£¤");
+		String a[] = s.split("ï¿¥");
 		String result = "";
 
 		for(int i=0;i<a.length;i++){

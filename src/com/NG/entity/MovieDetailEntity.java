@@ -1,4 +1,4 @@
-package com.NG.entity;
+ï»¿package com.NG.entity;
 
 import java.util.List;
 
@@ -11,44 +11,44 @@ import java.util.List;
 
 public class MovieDetailEntity {
 
-	private String subject_id;		//µçÓ°id (Õâ¸öÓë¶¹°êµÄAPI²»Í¬)
-	private String title;			//Ãû³Æ
-	private String original_title;	//Ô­Ãû
-	private String aka;				//ÓÖÃû
-	private String rating_average;	//ÆÀ·Ö
-	private String ratings_count;	//ÆÀ·ÖÈËÊı
-	private String wish_count;		//Ïë¿´ÈËÊı
-	private String collect_count;	//¿´¹ıÈËÊı	
-	private String image_medium;	//ÖĞÍ¼Æ¬Á´½Ó  (Õâ¸öÓë¶¹°êAPI²»Í¬)	
-	private String directors;		//µ¼Ñİ
-	private String countries;		//ÖÆÆ¬¹ú¼Ò/µØÇø
-	private String genres;			//µçÓ°ÀàĞÍ
-	private String casts;			//ÑİÔ±
-	private String summary;			//ÃèÊö
-	private String comments_count;	//¶ÌÆÀÊıÁ¿
-	private String reviews_count;	//Ó°ÆÀÊıÁ¿
-	private String year;			//Äê´ú
+	private String subject_id;		//ç”µå½±id (è¿™ä¸ªä¸è±†ç“£çš„APIä¸åŒ)
+	private String title;			//åç§°
+	private String original_title;	//åŸå
+	private String aka;				//åˆå
+	private String rating_average;	//è¯„åˆ†
+	private String ratings_count;	//è¯„åˆ†äººæ•°
+	private String wish_count;		//æƒ³çœ‹äººæ•°
+	private String collect_count;	//çœ‹è¿‡äººæ•°	
+	private String image_medium;	//ä¸­å›¾ç‰‡é“¾æ¥  (è¿™ä¸ªä¸è±†ç“£APIä¸åŒ)	
+	private String directors;		//å¯¼æ¼”
+	private String countries;		//åˆ¶ç‰‡å›½å®¶/åœ°åŒº
+	private String genres;			//ç”µå½±ç±»å‹
+	private String casts;			//æ¼”å‘˜
+	private String summary;			//æè¿°
+	private String comments_count;	//çŸ­è¯„æ•°é‡
+	private String reviews_count;	//å½±è¯„æ•°é‡
+	private String year;			//å¹´ä»£
 	private String summary_segmentation;	//???
 	
 	private List<ShortComment> short_comments;
 	private List<OthersLike> others_like;
-	private String user_tags;		//ÓÃ»§±êÇ© ×Ö·û´®
+	private String user_tags;		//ç”¨æˆ·æ ‡ç­¾ å­—ç¬¦ä¸²
 	
 	/*
-	private String subtype;			//ÌõÄ¿·ÖÀà, movie»òÕßtv
+	private String subtype;			//æ¡ç›®åˆ†ç±», movieæˆ–è€…tv
 	private String image_small;
 	private String image_large;
-	private String rating_stars;	//ĞÇ¼¶  ?????
+	private String rating_stars;	//æ˜Ÿçº§  ?????
 	private String rating_max;
 	private String rating_min;
 	private String douban_site;
-	private String mobile_url;		//ÒÆ¶¯°æÌõÄ¿Ò³URL
-	private String do_count;		//ÔÚ¿´ÈËÊı£¬Èç¹ûÊÇµçÊÓ¾ç£¬Ä¬ÈÏÖµÎª0£¬Èç¹ûÊÇµçÓ°ÖµÎªnull
+	private String mobile_url;		//ç§»åŠ¨ç‰ˆæ¡ç›®é¡µURL
+	private String do_count;		//åœ¨çœ‹äººæ•°ï¼Œå¦‚æœæ˜¯ç”µè§†å‰§ï¼Œé»˜è®¤å€¼ä¸º0ï¼Œå¦‚æœæ˜¯ç”µå½±å€¼ä¸ºnull
 
-	private String seasons_count;	//×Ü¼¾Êı(tv only)
-	private String current_season;	//µ±Ç°¼¾Êı(tv only)
-	private String episodes_count;	//µ±Ç°¼¾µÄ¼¯Êı(tv only)
-	private String schedule_url;	//Ó°Ñ¶Ò³URL
+	private String seasons_count;	//æ€»å­£æ•°(tv only)
+	private String current_season;	//å½“å‰å­£æ•°(tv only)
+	private String episodes_count;	//å½“å‰å­£çš„é›†æ•°(tv only)
+	private String schedule_url;	//å½±è®¯é¡µURL
 
 	 */
 	

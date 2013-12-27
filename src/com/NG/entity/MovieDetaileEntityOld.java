@@ -1,18 +1,18 @@
-package com.NG.entity;
+ï»¿package com.NG.entity;
 
 /**
  * 
- * @author tianqiujie µçÓ°ÏêÏ¸ÊµÌå
+ * @author tianqiujie ç”µå½±è¯¦ç»†å®ä½“
  * 
  */
 
 public class MovieDetaileEntityOld {
-	private String title;// µçÓ°Ãû³Æ
-	private String author;// µ¼Ñİ
-	private String writer;// ±à¾ç
-	private String imageUrl;// Í¼Æ¬Î»ÖÃ
-	private String summary;// ÄÚÈİ¼ò½é
-	private String webSite;// ¹ÙÍøÍøÖ·
+	private String title;// ç”µå½±åç§°
+	private String author;// å¯¼æ¼”
+	private String writer;// ç¼–å‰§
+	private String imageUrl;// å›¾ç‰‡ä½ç½®
+	private String summary;// å†…å®¹ç®€ä»‹
+	private String webSite;// å®˜ç½‘ç½‘å€
 
 	public String getAuthor() {
 		return author;

@@ -1,4 +1,4 @@
-package com.NG.viewpager;
+ï»¿package com.NG.viewpager;
 
 import java.util.List;
 
@@ -68,7 +68,7 @@ public class fragment2 extends Fragment{
 		testListView = (ListView) mMainView.findViewById(R.id.short_comment_activity_list);
 		//proDialog = new ProgressDialog(mContext);
 		//proDialog.setTitle(R.string.loading);
-		//proDialog.setMessage("ÇëÄúÄÍÐÄµÈ´ý...");	
+		//proDialog.setMessage("è¯·æ‚¨è€å¿ƒç­‰å¾…...");	
 		
 		movieInfo = new MovieDetailInfoLoader();
 	}
@@ -123,7 +123,7 @@ public class fragment2 extends Fragment{
 		ViewGroup p = (ViewGroup) mMainView.getParent(); 
         if (p != null) { 
             p.removeAllViewsInLayout(); 
-            Log.v("huahua", "fragment2-->ÒÆ³ýÒÑ´æÔÚµÄView");
+            Log.v("huahua", "fragment2-->ç§»é™¤å·²å­˜åœ¨çš„View");
         } */
 		
 		return mMainView;

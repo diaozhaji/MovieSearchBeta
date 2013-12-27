@@ -1,18 +1,18 @@
-package com.NG.entity;
+ï»¿package com.NG.entity;
 
 /**
  * 
  * @author tianqiujie
- * µçÓ°¸ÅÒªÊµÌå
+ * ç”µå½±æ¦‚è¦å®ä½“
  *
  */
 public class SingleEntity {
-	private String authorName;		//µçÓ°µ¼ÑİÃû³ÆÊôĞÔ
-	private String title;			//µçÓ°Ãû³ÆÊôĞÔ
-	private String firstUrl;		//Á´½ÓÊôĞÔ
-	private String imageUrl;		//Í¼Æ¬Á´½ÓÊôĞÔ
-	private String adjs;			//ĞÎÈİ´Ê
-	private String user_tags;		//ÓÃ»§±êÇ©
+	private String authorName;		//ç”µå½±å¯¼æ¼”åç§°å±æ€§
+	private String title;			//ç”µå½±åç§°å±æ€§
+	private String firstUrl;		//é“¾æ¥å±æ€§
+	private String imageUrl;		//å›¾ç‰‡é“¾æ¥å±æ€§
+	private String adjs;			//å½¢å®¹è¯
+	private String user_tags;		//ç”¨æˆ·æ ‡ç­¾
 	private String year;
 	private String rating_average; 
 	private String countries;

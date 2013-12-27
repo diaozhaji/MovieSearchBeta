@@ -1,4 +1,4 @@
-package com.NG.viewpager;
+ï»¿package com.NG.viewpager;
 
 import com.NG.entity.MovieDetailEntity;
 import com.NG.loader.MovieDetailInfoLoader;
@@ -70,10 +70,10 @@ public class fragment1 extends Fragment {
 		public void handleMessage(Message message) {
 
 			try {
-				countriesView.setText("µØÇø£º" + mMovie.getCountries());
-				collectView.setText("ÈËÆø£º" + mMovie.getCollect_count());
-				genresView.setText("ÀàÐÍ£º" + mMovie.getGenres());
-				yearView.setText("ÉÏÓ³Ê±¼ä£º" + mMovie.getYear());
+				countriesView.setText("åœ°åŒºï¼š" + mMovie.getCountries());
+				collectView.setText("äººæ°”ï¼š" + mMovie.getCollect_count());
+				genresView.setText("ç±»åž‹ï¼š" + mMovie.getGenres());
+				yearView.setText("ä¸Šæ˜ æ—¶é—´ï¼š" + mMovie.getYear());
 				summaryView.setText("\t" + mMovie.getSummary() + "...");
 
 			} catch (Exception e) {
@@ -112,7 +112,7 @@ public class fragment1 extends Fragment {
 		ViewGroup p = (ViewGroup) mMainView.getParent();
 		if (p != null) {
 			p.removeAllViewsInLayout();
-			Log.v("huahua", "fragment1-->ÒÆ³ýÒÑ´æÔÚµÄView");
+			Log.v("huahua", "fragment1-->ç§»é™¤å·²å­˜åœ¨çš„View");
 		}*/
 
 		return mMainView;

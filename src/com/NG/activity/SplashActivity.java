@@ -1,4 +1,4 @@
-package com.NG.activity;
+ï»¿package com.NG.activity;
 
 
 import com.NG.moviesearchbeta.R;
@@ -20,7 +20,7 @@ public class SplashActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
-		//È¡µÃÆÁÄ»·Ö±æÂÊ£¬ÒÔÔÚÌØĞ§²¥·ÅÖĞÊ¹ÓÃ
+		//å–å¾—å±å¹•åˆ†è¾¨ç‡ï¼Œä»¥åœ¨ç‰¹æ•ˆæ’­æ”¾ä¸­ä½¿ç”¨
         DisplayMetrics dm=new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         displayWidth=dm.widthPixels;

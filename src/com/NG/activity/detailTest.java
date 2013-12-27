@@ -1,4 +1,4 @@
-package com.NG.activity;
+ï»¿package com.NG.activity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -142,7 +142,7 @@ public class detailTest extends Activity {
 		// ProgressDialog
 		proDialog = new ProgressDialog(this);
 		proDialog.setTitle(R.string.loading);
-		proDialog.setMessage("ÇëÄúÄÍĞÄµÈ´ı...");
+		proDialog.setMessage("è¯·æ‚¨è€å¿ƒç­‰å¾…...");
 
 	}
 
@@ -212,13 +212,13 @@ public class detailTest extends Activity {
 			try {
 
 				ratingView.setText(mMovie.getRating_average());
-				directorsView.setText("µ¼Ñİ£º" + mMovie.getDirectors());
-				castsView.setText("ÑİÔ±£º" + mMovie.getCasts());
-				userTagsView.setText("ÓÃ»§±êÇ©£º" + mMovie.getUser_tags());
-				countriesView.setText("µØÇø£º" + mMovie.getCountries());
-				collectView.setText("ÈËÆø£º" + mMovie.getCollect_count());
-				genresView.setText("ÀàĞÍ£º" + mMovie.getGenres());
-				yearView.setText("ÉÏÓ³Ê±¼ä£º" + mMovie.getYear());
+				directorsView.setText("å¯¼æ¼”ï¼š" + mMovie.getDirectors());
+				castsView.setText("æ¼”å‘˜ï¼š" + mMovie.getCasts());
+				userTagsView.setText("ç”¨æˆ·æ ‡ç­¾ï¼š" + mMovie.getUser_tags());
+				countriesView.setText("åœ°åŒºï¼š" + mMovie.getCountries());
+				collectView.setText("äººæ°”ï¼š" + mMovie.getCollect_count());
+				genresView.setText("ç±»å‹ï¼š" + mMovie.getGenres());
+				yearView.setText("ä¸Šæ˜ æ—¶é—´ï¼š" + mMovie.getYear());
 				summaryView.setText("\t" + mMovie.getSummary() + "...");
 				/*
 				 * String summary = mMovie.getSummary(); int maxLen = 220; if
@@ -232,12 +232,12 @@ public class detailTest extends Activity {
 
 			} catch (Exception e) {
 				// TODO: handle exception
-				System.out.println("ÓĞĞ©Ã»ÓĞ");
+				System.out.println("æœ‰äº›æ²¡æœ‰");
 			}
 			if (shortCommentList.size() == 0) {
-				System.out.println("Ã»ÓĞ¶ÌÆÀ");
+				System.out.println("æ²¡æœ‰çŸ­è¯„");
 				ShortComment sc = new ShortComment();
-				sc.setUserName("ÔİÎŞ¸ÃµçÓ°¶ÌÆÀĞÅÏ¢");
+				sc.setUserName("æš‚æ— è¯¥ç”µå½±çŸ­è¯„ä¿¡æ¯");
 				shortCommentList.add(sc);
 				mAdapter = new ShortCommentAdapter(mContext, shortCommentList);
 				mAdapter.getItem(0);
@@ -249,7 +249,7 @@ public class detailTest extends Activity {
 			}
 
 			if (othersLikeList.size() == 0) {
-				System.out.println("Ã»ÓĞÆäËûÓÃ»§Ò²Ï²»¶");
+				System.out.println("æ²¡æœ‰å…¶ä»–ç”¨æˆ·ä¹Ÿå–œæ¬¢");
 			} else {
 				OtherslikePictureAdapter oladapter = new OtherslikePictureAdapter(
 						mContext, othersLikeList);
@@ -271,7 +271,7 @@ public class detailTest extends Activity {
 
 					} catch (Exception e) {
 						// TODO: handle exception
-						System.out.println("ÏêÇéÒ³Í¼Æ¬¶ÁÈ¡Ê§°Ü");
+						System.out.println("è¯¦æƒ…é¡µå›¾ç‰‡è¯»å–å¤±è´¥");
 					}
 				}
 

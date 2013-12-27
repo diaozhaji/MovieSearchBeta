@@ -1,4 +1,4 @@
-package com.NG.adapter;
+ï»¿package com.NG.adapter;
 
 
 import java.util.ArrayList;
@@ -85,10 +85,10 @@ public class SearhResultAdapter extends BaseAdapter{
 		
 		viewHolder.mTextView.setText(movieBriefPojo.getMovieName());
 		viewHolder.contentTextView.setText(
-				"µ¼ÑÝ£º" + movieBriefPojo.getAuthorName()
-				+"\n"+"µØÇø£º"+movieBriefPojo.getCountries()
-				+"\n"+"Ê±¼ä£º"+movieBriefPojo.getYear()+"\t\t"+"ÆÀ·Ö£º"+movieBriefPojo.getRating_average()
-				+"\n"+"Çé¸Ð£º"+movieBriefPojo.getAdjs()
+				"å¯¼æ¼”ï¼š" + movieBriefPojo.getAuthorName()
+				+"\n"+"åœ°åŒºï¼š"+movieBriefPojo.getCountries()
+				+"\n"+"æ—¶é—´ï¼š"+movieBriefPojo.getYear()+"\t\t"+"è¯„åˆ†ï¼š"+movieBriefPojo.getRating_average()
+				+"\n"+"æƒ…æ„Ÿï¼š"+movieBriefPojo.getAdjs()
 				);		
 		viewHolder.mImageView.setBackgroundResource(R.drawable.rc_item_bg);
 		

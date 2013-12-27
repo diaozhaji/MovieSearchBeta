@@ -1,4 +1,4 @@
-package com.NG.loader;
+ï»¿package com.NG.loader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import com.NG.utils.StringUtil;
 
 /**
  * 
- * @author tianqiujie ÒÀ¾İ¹Ø¼ü×Ö(ËÑË÷Ìõ¼ş) ·µ»Ø¶ÔÓ¦APIĞÅÏ¢ ²¢´æÈëÏàÓ¦ÊµÌå
+ * @author tianqiujie ä¾æ®å…³é”®å­—(æœç´¢æ¡ä»¶) è¿”å›å¯¹åº”APIä¿¡æ¯ å¹¶å­˜å…¥ç›¸åº”å®ä½“
  * 
  */
 public class SimpleInfoLoder {
@@ -24,8 +24,8 @@ public class SimpleInfoLoder {
 	 * anthor Abel 2010-09-02
 	 * 
 	 * @param key
-	 *            ËÑË÷µÄ¹Ø¼ü×Ö
-	 * @return ÒÑ´æÈëÊı¾İµÄ·ºĞÍLIST
+	 *            æœç´¢çš„å…³é”®å­—
+	 * @return å·²å­˜å…¥æ•°æ®çš„æ³›å‹LIST
 	 */
 	public List<SingleEntity> findXml(String key) throws IOException {
 		List<SingleEntity> result = new ArrayList<SingleEntity>();
@@ -72,7 +72,7 @@ public class SimpleInfoLoder {
 				movieBriefPojo.setYear(year);
 				movieBriefPojo.setRating_average(jsonObject.getString("rating_average"));
 				movieBriefPojo.setCountries(jsonObject.getString("countries"));
-				//ÔİÊ±Ã»ÓÃ
+				//æš‚æ—¶æ²¡ç”¨
 				String user_tags = jsonObject.getString("raw_user_tags");
 				user_tags = StringUtil.dealUserTagsString(user_tags);
 				movieBriefPojo.setUser_tags(user_tags);

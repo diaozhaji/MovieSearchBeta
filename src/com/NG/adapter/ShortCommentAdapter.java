@@ -1,4 +1,4 @@
-package com.NG.adapter;
+﻿package com.NG.adapter;
 
 import java.util.List;
 

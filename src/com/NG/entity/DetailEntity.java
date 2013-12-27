@@ -1,9 +1,9 @@
-package com.NG.entity;
+ï»¿package com.NG.entity;
 
 public class DetailEntity {
-	private String title;// Ãû³Æ
-	private String imageUrl;// Í¼Æ¬Î»ÖÃ
-	private String summary;// ÄÚÈİ¼ò½é
+	private String title;// åç§°
+	private String imageUrl;// å›¾ç‰‡ä½ç½®
+	private String summary;// å†…å®¹ç®€ä»‹
 	public String getTitle() {
 		return title;
 	}

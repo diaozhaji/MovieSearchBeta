@@ -1,4 +1,4 @@
-package com.NG.viewpager;
+ï»¿package com.NG.viewpager;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,11 +51,11 @@ public class ViewPagerActivity extends FragmentActivity {
 	private fragment1 mfragment1;
 	private fragment2 mfragment2;
 	private fragment3 mfragment3;
-	//Ò³ÃæÁĞ±í
+	//é¡µé¢åˆ—è¡¨
 	private ArrayList<Fragment> fragmentList;
-	//±êÌâÁĞ±í
+	//æ ‡é¢˜åˆ—è¡¨
 	ArrayList<String>   titleList    = new ArrayList<String>();
-	//Í¨¹ıpagerTabStrip¿ÉÒÔÉèÖÃ±êÌâµÄÊôĞÔ
+	//é€šè¿‡pagerTabStripå¯ä»¥è®¾ç½®æ ‡é¢˜çš„å±æ€§
 	private PagerTabStrip pagerTabStrip;
 	
 	private PagerTitleStrip pagerTitleStrip;
@@ -97,13 +97,13 @@ public class ViewPagerActivity extends FragmentActivity {
 		m_vp = (ViewPager)findViewById(R.id.viewpager);
 		
 		pagerTabStrip=(PagerTabStrip) findViewById(R.id.pagertab);
-		//ÉèÖÃÏÂ»®ÏßµÄÑÕÉ«
+		//è®¾ç½®ä¸‹åˆ’çº¿çš„é¢œè‰²
 		pagerTabStrip.setTabIndicatorColor(getResources().getColor(android.R.color.holo_green_dark)); 
-		//ÉèÖÃ±³¾°µÄÑÕÉ«
+		//è®¾ç½®èƒŒæ™¯çš„é¢œè‰²
 		pagerTabStrip.setBackgroundColor(this.getResources().getColor(R.color.detail_bg_white));
 		
 //		pagerTitleStrip=(PagerTitleStrip) findViewById(R.id.pagertab);
-//		//ÉèÖÃ±³¾°µÄÑÕÉ«
+//		//è®¾ç½®èƒŒæ™¯çš„é¢œè‰²
 //		pagerTitleStrip.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_dark));
 		
 		mfragment1 = new fragment1();
@@ -115,9 +115,9 @@ public class ViewPagerActivity extends FragmentActivity {
 		fragmentList.add(mfragment2);
 		fragmentList.add(mfragment3);
 		
-	    titleList.add("Ïê  Çé ");
-	    titleList.add("¶Ì  ÆÀ");
-	    titleList.add("Ïà¹ØµçÓ° ");
+	    titleList.add("è¯¦  æƒ… ");
+	    titleList.add("çŸ­  è¯„");
+	    titleList.add("ç›¸å…³ç”µå½± ");
 		
 		m_vp.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
 		//m_vp.setOffscreenPageLimit(2);
@@ -177,7 +177,7 @@ public class ViewPagerActivity extends FragmentActivity {
         //ProgressDialog
 		proDialog = new ProgressDialog(this);
 		proDialog.setTitle(R.string.loading);
-		proDialog.setMessage("ÇëÄúÄÍĞÄµÈ´ı...");	
+		proDialog.setMessage("è¯·æ‚¨è€å¿ƒç­‰å¾…...");	
 		
 	}
 	
@@ -203,19 +203,19 @@ public class ViewPagerActivity extends FragmentActivity {
 		public void handleMessage(Message message) {
 			
 			Bundle bundle = new Bundle();
-			bundle.putString("movie", "¹ş¹ş¹ş¹ş");
+			bundle.putString("movie", "å“ˆå“ˆå“ˆå“ˆ");
 			
 			titleView.setText(mMovie.getTitle());			
 			try{
 				
 				ratingView.setText(mMovie.getRating_average());				
-				directorsView.setText("µ¼Ñİ£º"+mMovie.getDirectors());
-				castsView.setText("ÑİÔ±£º"+mMovie.getCasts());
-				userTagsView.setText("ÓÃ»§±êÇ©£º"+mMovie.getUser_tags());
-				countriesView.setText("µØÇø£º"+mMovie.getCountries());
-				collectView.setText("ÈËÆø£º"+mMovie.getCollect_count());
-				genresView.setText("ÀàĞÍ£º"+mMovie.getGenres());
-				yearView.setText("ÉÏÓ³Ê±¼ä£º"+mMovie.getYear());
+				directorsView.setText("å¯¼æ¼”ï¼š"+mMovie.getDirectors());
+				castsView.setText("æ¼”å‘˜ï¼š"+mMovie.getCasts());
+				userTagsView.setText("ç”¨æˆ·æ ‡ç­¾ï¼š"+mMovie.getUser_tags());
+				countriesView.setText("åœ°åŒºï¼š"+mMovie.getCountries());
+				collectView.setText("äººæ°”ï¼š"+mMovie.getCollect_count());
+				genresView.setText("ç±»å‹ï¼š"+mMovie.getGenres());
+				yearView.setText("ä¸Šæ˜ æ—¶é—´ï¼š"+mMovie.getYear());
 				summaryView.setText("\t"+mMovie.getSummary() + "...");
 				/*
 				String summary = mMovie.getSummary();
@@ -233,7 +233,7 @@ public class ViewPagerActivity extends FragmentActivity {
 			}
 			/*
 			if(shortCommentList==null){	
-				System.out.println("Ã»ÓĞ¶ÌÆÀ");
+				System.out.println("æ²¡æœ‰çŸ­è¯„");
 			}
 			else{
 				mAdapter = new ShortCommentAdapter( mContext , shortCommentList);
@@ -241,7 +241,7 @@ public class ViewPagerActivity extends FragmentActivity {
 			}
 			
 			if(othersLikeList == null){
-				System.out.println("Ã»ÓĞÆäËûÓÃ»§Ò²Ï²»¶");
+				System.out.println("æ²¡æœ‰å…¶ä»–ç”¨æˆ·ä¹Ÿå–œæ¬¢");
 			}
 			else{
 				OtherslikePictureAdapter oladapter = new OtherslikePictureAdapter(mContext,othersLikeList);

@@ -1,4 +1,4 @@
-package com.NG.loader;
+ï»¿package com.NG.loader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class MovieDetailInfoLoader {
 		URL url = new URL(singleUrl);
 		Log.d(TAG, singleUrl);
 		
-		// »ñÈ¡Êı¾İ´æÈëStringBuilderÀïÃæ
+		// è·å–æ•°æ®å­˜å…¥StringBuilderé‡Œé¢
 		StringBuilder stringBuilder = new StringBuilder();
 		BufferedReader bufferedReader = new BufferedReader(
 				new InputStreamReader(url.openStream()));
@@ -55,46 +55,46 @@ public class MovieDetailInfoLoader {
 		try {
 			jsonObject = new JSONObject(stringBuilder.toString());
 			Log.d(TAG, stringBuilder.toString());
-			// µçÓ°Ãû³Æ
+			// ç”µå½±åç§°
 			movieDetailedPojo.setTitle(jsonObject.getString("title"));			
-			// Í¼Æ¬url
+			// å›¾ç‰‡url
 			movieDetailedPojo.setImage_medium(jsonObject.getString("image_medium"));
-			// ¼ò½é
+			// ç®€ä»‹
 			movieDetailedPojo.setSummary(jsonObject.getString("summary"));			
-			// ÆÀ·Ö
+			// è¯„åˆ†
 			movieDetailedPojo.setRating_average(jsonObject.getString("rating_average"));
 			Log.d(TAG, movieDetailedPojo.getRating_average());
-			// µ¼Ñİ
+			// å¯¼æ¼”
 			String directors = jsonObject.getString("directors");
 			directors = StringUtil.removeDelimiter(directors);
 			movieDetailedPojo.setDirectors(directors);
 			Log.d(TAG, movieDetailedPojo.getDirectors());
-			//Äê·İ
+			//å¹´ä»½
 			movieDetailedPojo.setYear(jsonObject.getString("year"));
 			Log.d(TAG, movieDetailedPojo.getYear());
-			//xxxÈË¿´¹ı---ÈËÆø
+			//xxxäººçœ‹è¿‡---äººæ°”
 			movieDetailedPojo.setCollect_count(jsonObject.getString("collect_count"));
 			Log.d(TAG, movieDetailedPojo.getCollect_count());
-			//µØÇø
+			//åœ°åŒº
 			String countries = jsonObject.getString("countries");
 			countries = StringUtil.removeDelimiter(countries);
 			movieDetailedPojo.setCountries(countries);
 			Log.d(TAG, "countriey:"+movieDetailedPojo.getCountries());
-			//ÀàĞÍ
+			//ç±»å‹
 			String genres = jsonObject.getString("genres");
 			genres = StringUtil.removeDelimiter(genres);
 			movieDetailedPojo.setGenres(genres);
-			Log.d(TAG, "ÀàĞÍ:"+movieDetailedPojo.getGenres());
-			//Ö÷Ñİ
+			Log.d(TAG, "ç±»å‹:"+movieDetailedPojo.getGenres());
+			//ä¸»æ¼”
 			String casts = jsonObject.getString("casts");
 			casts = StringUtil.removeDelimiter(casts);
 			movieDetailedPojo.setCasts(casts);
-			Log.d(TAG, "Ö÷Ñİ:"+movieDetailedPojo.getCasts());
-			//ÓÃ»§±êÇ©
+			Log.d(TAG, "ä¸»æ¼”:"+movieDetailedPojo.getCasts());
+			//ç”¨æˆ·æ ‡ç­¾
 			String userTags = jsonObject.getString("user_tags");
 			userTags = StringUtil.dealUserTagsString(userTags);
 			movieDetailedPojo.setUser_tags(userTags);
-			Log.d(TAG, "±êÇ©£º"+userTags);
+			Log.d(TAG, "æ ‡ç­¾ï¼š"+userTags);
 			
 			commentsJson = jsonObject.getJSONArray("comments");
 			Log.d(TAG, "commentsJson's length is:"+commentsJson.length());
