@@ -47,18 +47,17 @@ public class MainActivity extends ListActivity {
 
 	final static String TAG = "SearchMovie";
 	final static int LOAD_DATA = 1;
-	
-	private static boolean flag = false;	//用于管理第一个List和结果List
-	private static boolean isExit = false;	//用于管理是否退出应用
+
+	private static boolean flag = false; // 用于管理第一个List和结果List
+	private static boolean isExit = false; // 用于管理是否退出应用
 	private Context mContext;
 	private ListView mlistView;// 存取搜索信息的列表控件
-	
-	private SearchExampleAdapter sAdapter;	// 用于开始时的list
-	private SearhResultAdapter mAdapater;	// 用来加载BaseAdapater
+
+	private SearchExampleAdapter sAdapter; // 用于开始时的list
+	private SearhResultAdapter mAdapater; // 用来加载BaseAdapater
 
 	private ImageView search_button;// 搜索按钮
-	public EditText editText;// 搜索框
-	
+
 	public List<SingleEntity> aList;// MovieBriefPojo 返回的泛型LIST
 	private SingleEntity mbp;// 传递点击事件的 击点
 	public List<String> sList;
@@ -71,35 +70,34 @@ public class MainActivity extends ListActivity {
 	private Handler handler;
 	String[] types = { "搜电影" };
 
+	public EditText editText;// 搜索框
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		mContext = this;
-		
+
 		initProDialog();
 		initView();
 		initData();
-		
+
 	}
 
 	private void initData() {
 		// TODO Auto-generated method stub
-		sList = new ArrayList<String> ();
-		
+		sList = new ArrayList<String>();
+
 		getStringList();
-		
-		
-		
+
 	}
-	private void getStringList(){
+
+	private void getStringList() {
 		/*
-		String[] a = {"我想看章子怡的电影","帮我找张艺谋的电影",
-				"搜一下欢乐的电影","给爷找点惊悚的电影",
-				"你能找到感人的电影么","来一打刺激的电影试试"};
-		for(int i=0;i<a.length;i++){
-			sList.add(a[i]);
-		}*/
+		 * String[] a = {"我想看章子怡的电影","帮我找张艺谋的电影", "搜一下欢乐的电影","给爷找点惊悚的电影",
+		 * "你能找到感人的电影么","来一打刺激的电影试试"}; for(int i=0;i<a.length;i++){
+		 * sList.add(a[i]); }
+		 */
 		proDialog.show();
 		new Thread(downloadExample).start();
 		handler = new Handler() {
@@ -109,27 +107,28 @@ public class MainActivity extends ListActivity {
 					sList = (ArrayList<String>) msg.obj;
 					System.out.println("接收到了handler的数据");
 				}
-				
-				sAdapter = new SearchExampleAdapter(mContext,sList);
+
+				sAdapter = new SearchExampleAdapter(mContext, sList);
 				mlistView.setAdapter(sAdapter);
 				proDialog.dismiss();
 			}
 		};
-		
+
 	}
+
 	Runnable downloadExample = new Runnable() {
 
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-			
+
 			try {
 				sList = new SearchExampleLoader().getExample();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			handler.sendMessage(handler.obtainMessage(0, sList));
 		}
 	};
@@ -140,19 +139,44 @@ public class MainActivity extends ListActivity {
 		search_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+
 				proDialog.show();
-				
+
 				searchData();
 
 				// mHandler.sendEmptyMessage(LOAD_DATA);
 			}
 		});
 
-		editText = (EditText) findViewById(R.id.edittext);
-		
 		mlistView = getListView();
-		
+
+		editText = (EditText) findViewById(R.id.edittext);
+
+		editText.setOnKeyListener(new View.OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				System.out.println("edit scan");
+				if (event.getAction() == KeyEvent.ACTION_DOWN
+						&& keyCode == KeyEvent.KEYCODE_DEL) {
+					System.out.println("del");
+				}
+
+				if (event.getAction() == KeyEvent.ACTION_DOWN
+						&& keyCode == KeyEvent.KEYCODE_BACK) {
+					System.out.println("back");
+				}
+
+				if (keyCode == KeyEvent.KEYCODE_ENTER) {
+					System.out.println("enter");
+
+				} else {
+					System.out.println("else input");
+				}
+
+				return false;
+			}
+		});
+
 	}
 
 	public void searchData() {
@@ -161,7 +185,7 @@ public class MainActivity extends ListActivity {
 			openOptionDialog("搜索条件");
 			proDialog.dismiss();
 			return;
-			
+
 		} else {
 			new Thread(downloadRun).start();
 		}
@@ -177,7 +201,7 @@ public class MainActivity extends ListActivity {
 				}
 			}
 		};
-		//proDialog.dismiss();
+		// proDialog.dismiss();
 	}
 
 	void initProDialog() {
@@ -195,7 +219,7 @@ public class MainActivity extends ListActivity {
 				aList = new SimpleInfoLoder().findXml(name);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				
+
 				e.printStackTrace();
 			}
 			handler.sendMessage(handler.obtainMessage(0, aList));
@@ -207,18 +231,18 @@ public class MainActivity extends ListActivity {
 	 */
 
 	public void showall(List<SingleEntity> list) {
-		
-		if(list==null){
-			//没有结果情况
+
+		if (list == null) {
+			// 没有结果情况
 			Toast.makeText(getApplicationContext(), "没有返回结果",
 					Toast.LENGTH_SHORT).show();
-		}else{
+		} else {
 			mAdapater = new SearhResultAdapter(this, list);
 
 			mlistView.setAdapter(mAdapater);
 			mlistView.setOnScrollListener(mScrollListener);
 			flag = true;
-		}	
+		}
 		proDialog.dismiss();
 	}
 
@@ -227,15 +251,15 @@ public class MainActivity extends ListActivity {
 	 */
 
 	protected void onListItemClick(ListView l, View view, int position, long id) {
-		if(!flag){
+		if (!flag) {
 			editText.setText(sList.get(position));
 		}
-		if(flag){
+		if (flag) {
 			mbp = aList.get(position);
 			Intent intent = new Intent();
-			//intent.setClass(MainActivity.this, ShortCommentActivity.class);
-			
-			//intent.setClass(MainActivity.this, MovieDetailActivity.class);
+			// intent.setClass(MainActivity.this, ShortCommentActivity.class);
+
+			// intent.setClass(MainActivity.this, MovieDetailActivity.class);
 			intent.setClass(MainActivity.this, detailTest.class);
 			Bundle bundle = new Bundle();
 			bundle.putString("id", mbp.getFirstUrl().toString());
@@ -244,13 +268,13 @@ public class MainActivity extends ListActivity {
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}
-		
+
 	}
-	
+
 	/**
 	 * @author tianqiujie 当listView滚动停止以后才开始异步加载图片
 	 */
-	
+
 	OnScrollListener mScrollListener = new OnScrollListener() {
 
 		@Override
@@ -268,7 +292,7 @@ public class MainActivity extends ListActivity {
 			default:
 				break;
 			}
-			Log.d(TAG,"scroll");
+			Log.d(TAG, "scroll");
 			mAdapater.notifyDataSetChanged();
 		}
 
@@ -290,23 +314,21 @@ public class MainActivity extends ListActivity {
 					}
 				}).show();
 	}
-	
-	
-    
+	/*
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		System.out.println("TabHost_Index.java onKeyDown");
+		
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if(flag == true){
-				
+			if (flag == true) {
+
 				mlistView.setAdapter(sAdapter);
-				
+
 				flag = false;
-			}
-			else{
-				if(isExit == false ) {
+			} else {
+				if (isExit == false) {
 					isExit = true;
-					Toast.makeText(this, "再按一次后退键退出应用程序", Toast.LENGTH_SHORT).show();
+					Toast.makeText(this, "再按一次后退键退出应用程序", Toast.LENGTH_SHORT)
+							.show();
 
 				} else {
 					finish();
@@ -314,6 +336,28 @@ public class MainActivity extends ListActivity {
 				}
 			}
 		}
+		if (keyCode == KeyEvent.KEYCODE_DEL){
+			System.out.println("KEYCODE_DEL");
+		}
+		
 		return false;
+	}*/
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		System.out.println(event.toString());
+		
+		if (event.getAction() == KeyEvent.ACTION_UP
+				&& event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+			// 返回桌面
+		}
+		if (event.getAction() == KeyEvent.ACTION_DOWN
+				&& event.getKeyCode() == KeyEvent.KEYCODE_MENU) {
+			// 弹出退出程序的确定框
+		}
+		if(event.getAction() == KeyEvent.ACTION_UP
+				&& event.getKeyCode() == KeyEvent.KEYCODE_DEL);
+		
+		return super.dispatchKeyEvent(event);
 	}
+
 }

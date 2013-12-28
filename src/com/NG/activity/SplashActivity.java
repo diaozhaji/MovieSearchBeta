@@ -2,6 +2,8 @@
 
 
 import com.NG.moviesearchbeta.R;
+import com.NG.viewpager.ViewPagerActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +11,7 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 
 public class SplashActivity extends Activity{
-	private final int SPLASH_DISPLAY_LENGHT = 1000; // Splash display time in ms
+	private final int SPLASH_DISPLAY_LENGHT = 3000; // Splash display time in ms
 	
 	//private ImageView imageview;
 	//private TextView tv;
@@ -36,7 +38,7 @@ public class SplashActivity extends Activity{
 			public void run() {
 				Intent nextIntent = new Intent();
 				
-				nextIntent.setClass(SplashActivity.this, MainActivity.class);
+				nextIntent.setClass(SplashActivity.this, ViewPagerActivity.class);
 					
 				SplashActivity.this.startActivity(nextIntent);
 				SplashActivity.this.finish();

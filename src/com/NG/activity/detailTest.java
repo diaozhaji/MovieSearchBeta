@@ -16,8 +16,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -234,29 +236,32 @@ public class detailTest extends Activity {
 				// TODO: handle exception
 				System.out.println("有些没有");
 			}
+			
+			
 			if (shortCommentList.size() == 0) {
-				System.out.println("没有短评");
+				Log.d(TAG, "没有短评");
 				ShortComment sc = new ShortComment();
-				sc.setUserName("暂无该电影短评信息");
+				Log.d(TAG, "暂无该电影短评信息");
 				shortCommentList.add(sc);
 				mAdapter = new ShortCommentAdapter(mContext, shortCommentList);
 				mAdapter.getItem(0);
 				shortCommentsListView.setAdapter(mAdapter);
 			} else {
+				Log.d(TAG, "short comment list lenth : "+shortCommentList.size());
 				mAdapter = new ShortCommentAdapter(mContext, shortCommentList);
 				mAdapter.getItem(0);
 				shortCommentsListView.setAdapter(mAdapter);
 			}
 
 			if (othersLikeList.size() == 0) {
-				System.out.println("没有其他用户也喜欢");
+				Log.d(TAG, "没有其他用户也喜欢");
 			} else {
 				OtherslikePictureAdapter oladapter = new OtherslikePictureAdapter(
 						mContext, othersLikeList);
 				oladapter.getItem(0);
 				gridView.setAdapter(oladapter);
 			}
-
+			/*
 			new Thread() {
 				public void run() {
 					try {
@@ -275,7 +280,7 @@ public class detailTest extends Activity {
 					}
 				}
 
-			}.start();
+			}.start();*/
 
 			proDialog.dismiss();
 			

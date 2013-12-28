@@ -64,7 +64,7 @@ public class OtherslikePictureAdapter extends BaseAdapter{
         ViewHolder viewHolder; 
         if (convertView == null) 
         { 
-            convertView = inflater.inflate(R.layout.picture_item, null); 
+            convertView = inflater.inflate(R.layout.otherlike_item, null); 
             viewHolder = new ViewHolder(); 
             viewHolder.title = (TextView) convertView.findViewById(R.id.otherslike_title); 
             viewHolder.image = (ImageView) convertView.findViewById(R.id.otherslike_image); 

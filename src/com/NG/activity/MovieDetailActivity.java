@@ -267,7 +267,7 @@ public class MovieDetailActivity extends Activity{
 				gridView.setAdapter(oladapter);
 			}
 			
-			
+			/*
 			new Thread(){
 				public void run(){
 					try {
@@ -286,7 +286,7 @@ public class MovieDetailActivity extends Activity{
 					}
 				}
 				
-			}.start();
+			}.start();*/
 			
 			proDialog.dismiss();
 			

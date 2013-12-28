@@ -1,325 +1,198 @@
 ﻿package com.NG.viewpager;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.NG.adapter.OtherslikePictureAdapter;
-import com.NG.adapter.ShortCommentAdapter;
-import com.NG.entity.MovieDetailEntity;
-import com.NG.entity.OthersLike;
-import com.NG.entity.ShortComment;
-import com.NG.loader.MovieDetailInfoLoader;
+import com.NG.activity.MainActivity;
 import com.NG.moviesearchbeta.R;
 
-
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.app.LocalActivityManager;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerTabStrip;
-import android.support.v4.view.PagerTitleStrip;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.GridView;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
-import android.widget.TabWidget;
-import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TextView;
 
-public class ViewPagerActivity extends FragmentActivity {
-	final static String TAG = "ViewPagerActivity";
+/**
+ * 
+ * @author qianj
+ * @version 1.0.0
+ * @2012-5-31 下午2:02:15
+ */
+public class ViewPagerActivity extends Activity {
 	
-	private ViewPager m_vp;
-	private fragment1 mfragment1;
-	private fragment2 mfragment2;
-	private fragment3 mfragment3;
-	//页面列表
-	private ArrayList<Fragment> fragmentList;
-	//标题列表
-	ArrayList<String>   titleList    = new ArrayList<String>();
-	//通过pagerTabStrip可以设置标题的属性
-	private PagerTabStrip pagerTabStrip;
+	Context context = null;
+	List<View> listViews;
+	LocalActivityManager manager = null;
+	TabHost tabHost = null;
+
+	private ViewPager pager = null;
+
+	private static boolean flag = false; // 用于管理第一个List和结果List
+	private static boolean isExit = false; // 用于管理是否退出应用
 	
-	private PagerTitleStrip pagerTitleStrip;
-	private FragmentActivity mThis;
-	private Context mContext;
-	private String url;
-	private String imageUrl;
-	private ProgressDialog proDialog;
-	
-	private MovieDetailEntity mMovie;
-	private MovieDetailInfoLoader movieInfo;
-	
-	private ListView shortCommentsListView;
-	//private ShortCommentAdapter mAdapter;
-	//private List<ShortComment> shortCommentList;
-	//private List<OthersLike> othersLikeList;
-	
-	//Views
-	private TextView titleView;
-	private TextView summaryView;
-	private ImageView image;
-	private TextView ratingView;
-	private TextView directorsView;
-	private TextView castsView;
-	private TextView userTagsView;
-	private TextView countriesView;
-	private TextView collectView;
-	private TextView genresView;
-	private TextView yearView;
-	
-	//button
-	private ImageView backBtn;
-	
+	//views
+	private ImageView search_button;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.viewpager_activity);
-		
-		m_vp = (ViewPager)findViewById(R.id.viewpager);
-		
-		pagerTabStrip=(PagerTabStrip) findViewById(R.id.pagertab);
-		//设置下划线的颜色
-		pagerTabStrip.setTabIndicatorColor(getResources().getColor(android.R.color.holo_green_dark)); 
-		//设置背景的颜色
-		pagerTabStrip.setBackgroundColor(this.getResources().getColor(R.color.detail_bg_white));
-		
-//		pagerTitleStrip=(PagerTitleStrip) findViewById(R.id.pagertab);
-//		//设置背景的颜色
-//		pagerTitleStrip.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_dark));
-		
-		mfragment1 = new fragment1();
-		mfragment2 = new fragment2();
-		mfragment3 = new fragment3();
 
-		fragmentList = new ArrayList<Fragment>();
-		fragmentList.add(mfragment1);
-		fragmentList.add(mfragment2);
-		fragmentList.add(mfragment3);
-		
-	    titleList.add("详  情 ");
-	    titleList.add("短  评");
-	    titleList.add("相关电影 ");
-		
-		m_vp.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
-		//m_vp.setOffscreenPageLimit(2);
-		
-		
-		mContext = this;
-		initView();
-		
-		try {
-			initData();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		new Thread(new LoadData()).start();
-		proDialog.show();
-	}
-	
-	private void initView() {
-		// TODO Auto-generated method stub
-		titleView = (TextView)findViewById(R.id.layout_title_txt);
-		
-		backBtn = (ImageView)findViewById(R.id.title_button_back);
-		backBtn.setOnClickListener(new OnClickListener(){
+		setContentView(R.layout.viewpager_test);
+
+		context = ViewPagerActivity.this;
+
+		pager = (ViewPager) findViewById(R.id.viewpager);
+
+		// 定放一个放view的list，用于存放viewPager用到的view
+		listViews = new ArrayList<View>();
+
+		manager = new LocalActivityManager(this, true);
+		manager.dispatchCreate(savedInstanceState);
+
+		Intent i1 = new Intent(context, com.NG.ui.SearchResultPage.class);
+		listViews.add(getView("A", i1));
+		Intent i2 = new Intent(context, T2Activity.class);
+		listViews.add(getView("B", i2));
+
+		tabHost = (TabHost) findViewById(R.id.tabhost);
+		tabHost.setup();
+		tabHost.setup(manager);
+
+		// 这儿主要是自定义一下tabhost中的tab的样式
+		RelativeLayout tabIndicator1 = (RelativeLayout) LayoutInflater.from(
+				this).inflate(R.layout.tabwidget, null);
+		TextView tvTab1 = (TextView) tabIndicator1.findViewById(R.id.tv_title);
+		tvTab1.setText("第一页");
+
+		RelativeLayout tabIndicator2 = (RelativeLayout) LayoutInflater.from(
+				this).inflate(R.layout.tabwidget, null);
+		TextView tvTab2 = (TextView) tabIndicator2.findViewById(R.id.tv_title);
+		tvTab2.setText("第二页");
+
+		Intent intent = new Intent(context, EmptyActivity.class);
+		// 注意这儿Intent中的activity不能是自身
+		// 比如“A”对应的是T1Activity，后面intent就new的T3Activity的。
+		tabHost.addTab(tabHost.newTabSpec("A").setIndicator(tabIndicator1)
+				.setContent(intent));
+		tabHost.addTab(tabHost.newTabSpec("B").setIndicator(tabIndicator2)
+				.setContent(intent));
+
+		pager.setAdapter(new MyPageAdapter(listViews));
+		pager.setOnPageChangeListener(new OnPageChangeListener() {
+			@Override
+			public void onPageSelected(int position) {
+				// 当viewPager发生改变时，同时改变tabhost上面的currentTab
+				tabHost.setCurrentTab(position);
+			}
 
 			@Override
-			public void onClick(View v) {
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+			}
+		});
+
+		// 点击tabhost中的tab时，要切换下面的viewPager
+		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+			@Override
+			public void onTabChanged(String tabId) {
+
+				if ("A".equals(tabId)) {
+					pager.setCurrentItem(0);
+				}
+				if ("B".equals(tabId)) {
+
+					pager.setCurrentItem(1);
+				}
+			}
+		});
+		
+		search_button = (ImageView)findViewById(R.id.search_button);
+		search_button.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				finish();
+				
 			}
 			
 		});
-		
-        
-        image = (ImageView)findViewById(R.id.detail_activity_img);
-		
-		ratingView  = (TextView)findViewById(R.id.rating);
-		directorsView = (TextView)findViewById(R.id.directors);
-		castsView = (TextView)findViewById(R.id.casts);
-		userTagsView = (TextView)findViewById(R.id.user_tags);
-		
-		//tab1 view
-		countriesView = (TextView)findViewById(R.id.countries);
-		collectView = (TextView)findViewById(R.id.collect_count);
-		genresView  = (TextView)findViewById(R.id.genres);
-		yearView = (TextView)findViewById(R.id.year);
-		summaryView = (TextView)findViewById(R.id.detail_summary);
-        
-        //tab3 view
-        //gridView = (GridView) findViewById(R.id.tab3); 
-		
-         
-        
-        //ProgressDialog
-		proDialog = new ProgressDialog(this);
-		proDialog.setTitle(R.string.loading);
-		proDialog.setMessage("请您耐心等待...");	
-		
+
 	}
-	
 
-
-
-
-	private void initData() throws IOException {
-		Bundle bundle = getIntent().getExtras();		
-		//String id = bundle.getString("id");
-		//imageUrl = bundle.getString("imageurl");
-		String id = "3541415";
-		imageUrl = "http://img3.douban.com/mpic/s4356687.jpg";		
-		
-		
-		url = "http://192.158.31.250/search/"+id+"/";
-		
-		movieInfo = new MovieDetailInfoLoader();
-	}
-	
-	private Handler mHandler = new Handler() {
-		@Override
-		public void handleMessage(Message message) {
-			
-			Bundle bundle = new Bundle();
-			bundle.putString("movie", "哈哈哈哈");
-			
-			titleView.setText(mMovie.getTitle());			
-			try{
-				
-				ratingView.setText(mMovie.getRating_average());				
-				directorsView.setText("导演："+mMovie.getDirectors());
-				castsView.setText("演员："+mMovie.getCasts());
-				userTagsView.setText("用户标签："+mMovie.getUser_tags());
-				countriesView.setText("地区："+mMovie.getCountries());
-				collectView.setText("人气："+mMovie.getCollect_count());
-				genresView.setText("类型："+mMovie.getGenres());
-				yearView.setText("上映时间："+mMovie.getYear());
-				summaryView.setText("\t"+mMovie.getSummary() + "...");
-				/*
-				String summary = mMovie.getSummary();
-				int maxLen = 220;
-				if (summary.length() > maxLen) {
-					summaryView.setText("\t"+summary.substring(0, maxLen) + "...");
-				}*/
-				
-				//shortCommentList = mMovie.getShort_comments();				
-				//othersLikeList = mMovie.getOthers_like();
-				
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			/*
-			if(shortCommentList==null){	
-				System.out.println("没有短评");
-			}
-			else{
-				mAdapter = new ShortCommentAdapter( mContext , shortCommentList);
-				shortCommentsListView.setAdapter(mAdapter);
-			}
-			
-			if(othersLikeList == null){
-				System.out.println("没有其他用户也喜欢");
-			}
-			else{
-				OtherslikePictureAdapter oladapter = new OtherslikePictureAdapter(mContext,othersLikeList);
-				gridView.setAdapter(oladapter);
-			}*/
-			
-			
-			new Thread(){
-				public void run(){
-					try {
-						URL aryURI = new URL(mMovie.getImage_medium());
-						InputStream is = aryURI.openStream();
-						Bitmap bm = BitmapFactory.decodeStream(is);
-						if (bm == null) {
-							image.setBackgroundColor(R.drawable.detail_img_loading);
-						}
-						is.close();
-						image.setImageBitmap(bm);
-						
-					} catch (Exception e) {
-						// TODO: handle exception
-					}
-				}
-				
-			}.start();
-			
-			proDialog.dismiss();
-			
-                
-		}
-	};
-
-	
-	
-	class LoadData implements Runnable {
-
-		@Override
-		public void run() {
-			int choice = 0;
-			Log.d(TAG, "run()");
-			try {
-				mMovie = movieInfo.parserMovieJson(url);
-				
-				mHandler.sendEmptyMessage(choice);
-
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
+	private View getView(String id, Intent intent) {
+		return manager.startActivity(id, intent).getDecorView();
 	}
 	
 	
 	
-	public class MyViewPagerAdapter extends FragmentPagerAdapter{
-		public MyViewPagerAdapter(FragmentManager fm) {
-			super(fm);
-			// TODO Auto-generated constructor stub
+
+	private class MyPageAdapter extends PagerAdapter {
+
+		private List<View> list;
+
+		private MyPageAdapter(List<View> list) {
+			this.list = list;
 		}
-		
+
 		@Override
-		public Fragment getItem(int arg0) {
-			return fragmentList.get(arg0);
+		public void destroyItem(View view, int position, Object arg2) {
+			ViewPager pViewPager = ((ViewPager) view);
+			pViewPager.removeView(list.get(position));
+		}
+
+		@Override
+		public void finishUpdate(View arg0) {
 		}
 
 		@Override
 		public int getCount() {
-			return fragmentList.size();
+			return list.size();
 		}
 
 		@Override
-		public CharSequence getPageTitle(int position) {
-			// TODO Auto-generated method stub
-			return titleList.get(position);
+		public Object instantiateItem(View view, int position) {
+			ViewPager pViewPager = ((ViewPager) view);
+			pViewPager.addView(list.get(position));
+			return list.get(position);
 		}
 
-		
+		@Override
+		public boolean isViewFromObject(View arg0, Object arg1) {
+			return arg0 == arg1;
+		}
+
+		@Override
+		public void restoreState(Parcelable arg0, ClassLoader arg1) {
+		}
+
+		@Override
+		public Parcelable saveState() {
+			return null;
+		}
+
+		@Override
+		public void startUpdate(View arg0) {
+		}
+
 	}
 
 }
