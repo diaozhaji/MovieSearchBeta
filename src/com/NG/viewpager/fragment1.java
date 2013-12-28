@@ -1,4 +1,4 @@
-package com.NG.viewpager;
+ï»¿package com.NG.viewpager;
 
 
 import com.NG.moviesearchbeta.R;
@@ -46,7 +46,7 @@ public class fragment1 extends Fragment{
 		ViewGroup p = (ViewGroup) mMainView.getParent(); 
         if (p != null) { 
             p.removeAllViewsInLayout(); 
-            Log.v("huahua", "fragment1-->ÒÆ³ýÒÑ´æÔÚµÄView");
+            Log.v("huahua", "fragment1-->ç§»é™¤å·²å­˜åœ¨çš„View");
         } 
 		
 		return mMainView;

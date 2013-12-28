@@ -1,4 +1,4 @@
-package com.NG.viewpager;
+ï»¿package com.NG.viewpager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,16 +27,16 @@ public class T2Activity extends Activity{
 		
 		setContentView(R.layout.squared_activity);
 		
-		String[] a = {"ÈÈÃÅ",
-		            "ÕÂ×Óâù",
-		            "¸ãĞ¦",
-		            "°ÂË¹¿¨",
-		            "»¹²»´í",
-		            "¾ªã¤",
-		            "ÃÀ¹ú",
-		            "ÈÕ±¾",
-		            "º«¹ú"
-		            ,"¸ãĞ¦µÄµçÓ°"};
+		String[] a = {"çƒ­é—¨",
+		            "ç« å­æ€¡",
+		            "æç¬‘",
+		            "å¥¥æ–¯å¡",
+		            "è¿˜ä¸é”™",
+		            "æƒŠæ‚š",
+		            "ç¾å›½",
+		            "æ—¥æœ¬",
+		            "éŸ©å›½"
+		            ,"æç¬‘çš„ç”µå½±"};
 		
 		squaredList = new ArrayList<String>();
 		

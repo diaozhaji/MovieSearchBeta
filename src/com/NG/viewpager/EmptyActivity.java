@@ -1,4 +1,4 @@
-package com.NG.viewpager;
+﻿package com.NG.viewpager;
 
 import android.app.Activity;
 
