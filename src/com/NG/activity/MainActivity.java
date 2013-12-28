@@ -235,8 +235,8 @@ public class MainActivity extends ListActivity {
 			Intent intent = new Intent();
 			//intent.setClass(MainActivity.this, ShortCommentActivity.class);
 			
-			intent.setClass(MainActivity.this, MovieDetailActivity.class);
-			//intent.setClass(MainActivity.this, detailTest.class);
+			//intent.setClass(MainActivity.this, MovieDetailActivity.class);
+			intent.setClass(MainActivity.this, detailTest.class);
 			Bundle bundle = new Bundle();
 			bundle.putString("id", mbp.getFirstUrl().toString());
 			bundle.putString("imageurl", mbp.getImageUrl().toString());
