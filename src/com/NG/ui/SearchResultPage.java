@@ -1,4 +1,4 @@
-package com.NG.ui;
+ï»¿package com.NG.ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import com.NG.entity.SingleEntity;
 
 /**
  * 
- * @author jiyuan ³ÌĞòÈë¿Ú
+ * @author jiyuan ç¨‹åºå…¥å£
  */
 
 public class SearchResultPage extends ListActivity {
@@ -40,29 +40,29 @@ public class SearchResultPage extends ListActivity {
 
 	private Context mContext;
 	
-	private ListView mlistView;// ´æÈ¡ËÑË÷ĞÅÏ¢µÄÁĞ±í¿Ø¼ş
+	private ListView mlistView;// å­˜å–æœç´¢ä¿¡æ¯çš„åˆ—è¡¨æ§ä»¶
 
-	private SearchExampleAdapter sAdapter; // ÓÃÓÚ¿ªÊ¼Ê±µÄlist
-	private SearhResultAdapter mAdapater; // ÓÃÀ´¼ÓÔØBaseAdapater
+	private SearchExampleAdapter sAdapter; // ç”¨äºå¼€å§‹æ—¶çš„list
+	private SearhResultAdapter mAdapater; // ç”¨æ¥åŠ è½½BaseAdapater
 
-	public List<SingleEntity> aList;// MovieBriefPojo ·µ»ØµÄ·ºĞÍLIST
-	private SingleEntity mbp;// ´«µİµã»÷ÊÂ¼şµÄ »÷µã
+	public List<SingleEntity> aList;// MovieBriefPojo è¿”å›çš„æ³›å‹LIST
+	private SingleEntity mbp;// ä¼ é€’ç‚¹å‡»äº‹ä»¶çš„ å‡»ç‚¹
 	public List<String> sList;
 
-	public Spinner sp;// Ñ¡ÔñÒªËÑË÷µÄÀàĞÍ
+	public Spinner sp;// é€‰æ‹©è¦æœç´¢çš„ç±»å‹
 
 	private ProgressDialog proDialog;
 
 	private String name;
 	private Handler handler;
-	String[] types = { "ËÑµçÓ°" };
+	String[] types = { "æœç”µå½±" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_result_page);
 		mContext = this;
-		name = "´ÁÀáµã";
+		name = "æˆ³æ³ªç‚¹";
 
 		initView();
 		//initData();
@@ -85,7 +85,7 @@ public class SearchResultPage extends ListActivity {
 	void initProDialog() {
 		proDialog = new ProgressDialog(this);
 		proDialog.setTitle(R.string.loading);
-		proDialog.setMessage("ÇëÄúÄÍĞÄµÈ´ı...");
+		proDialog.setMessage("è¯·æ‚¨è€å¿ƒç­‰å¾…...");
 	}
 
 	public void searchData(String s) {
@@ -94,9 +94,9 @@ public class SearchResultPage extends ListActivity {
 		handler = new Handler() {
 			public void handleMessage(Message msg) {
 				if (msg.what == 0) {
-					// msg.objÊÇ»ñÈ¡handler·¢ËÍĞÅÏ¢´«À´µÄÊı¾İ
+					// msg.objæ˜¯è·å–handlerå‘é€ä¿¡æ¯ä¼ æ¥çš„æ•°æ®
 					List<SingleEntity> seList = (ArrayList<SingleEntity>) msg.obj;
-					// ¸øListView°ó¶¨Êı¾İ
+					// ç»™ListViewç»‘å®šæ•°æ®
 					showall(seList);
 
 				}
@@ -138,9 +138,9 @@ public class SearchResultPage extends ListActivity {
 		handler = new Handler() {
 			public void handleMessage(Message msg) {
 				if (msg.what == 0) {
-					// msg.objÊÇ»ñÈ¡handler·¢ËÍĞÅÏ¢´«À´µÄÊı¾İ
+					// msg.objæ˜¯è·å–handlerå‘é€ä¿¡æ¯ä¼ æ¥çš„æ•°æ®
 					sList = (ArrayList<String>) msg.obj;
-					System.out.println("½ÓÊÕµ½ÁËhandlerµÄÊı¾İ");
+					System.out.println("æ¥æ”¶åˆ°äº†handlerçš„æ•°æ®");
 				}
 
 				sAdapter = new SearchExampleAdapter(mContext, sList);
@@ -169,14 +169,14 @@ public class SearchResultPage extends ListActivity {
 	};*/
 
 	/**
-	 * @author tianqiujie Ìí¼Ó×Ô¶¨Òå²¼¾ÖÆ÷InfoAdapter
+	 * @author tianqiujie æ·»åŠ è‡ªå®šä¹‰å¸ƒå±€å™¨InfoAdapter
 	 */
 
 	public void showall(List<SingleEntity> list) {
 
 		if (list == null) {
-			// Ã»ÓĞ½á¹ûÇé¿ö
-			Toast.makeText(getApplicationContext(), "Ã»ÓĞ·µ»Ø½á¹û",
+			// æ²¡æœ‰ç»“æœæƒ…å†µ
+			Toast.makeText(getApplicationContext(), "æ²¡æœ‰è¿”å›ç»“æœ",
 					Toast.LENGTH_SHORT).show();
 		} else {
 			mAdapater = new SearhResultAdapter(this, list);
@@ -188,7 +188,7 @@ public class SearchResultPage extends ListActivity {
 	}
 
 	/**
-	 * @author tianqiujie Ìø×ªµ¥¸öµçÓ°µÄ½çÃæ ´«ÈëÍ¼Æ¬Á´½ÓºÍµã»÷Ë÷ÒıÖµ
+	 * @author tianqiujie è·³è½¬å•ä¸ªç”µå½±çš„ç•Œé¢ ä¼ å…¥å›¾ç‰‡é“¾æ¥å’Œç‚¹å‡»ç´¢å¼•å€¼
 	 */
 
 	protected void onListItemClick(ListView l, View view, int position, long id) {
@@ -202,14 +202,14 @@ public class SearchResultPage extends ListActivity {
 		Bundle bundle = new Bundle();
 		bundle.putString("id", mbp.getFirstUrl().toString());
 		bundle.putString("imageurl", mbp.getImageUrl().toString());
-		// bundle.putString("type", "µçÓ°");
+		// bundle.putString("type", "ç”µå½±");
 		intent.putExtras(bundle);
 		startActivity(intent);
 
 	}
 
 	/**
-	 * @author tianqiujie µ±listView¹ö¶¯Í£Ö¹ÒÔºó²Å¿ªÊ¼Òì²½¼ÓÔØÍ¼Æ¬
+	 * @author tianqiujie å½“listViewæ»šåŠ¨åœæ­¢ä»¥åæ‰å¼€å§‹å¼‚æ­¥åŠ è½½å›¾ç‰‡
 	 */
 
 	OnScrollListener mScrollListener = new OnScrollListener() {
@@ -240,11 +240,11 @@ public class SearchResultPage extends ListActivity {
 		}
 	};
 
-	// ÌáÊ¾¿ò·½·¨
+	// æç¤ºæ¡†æ–¹æ³•
 	public void openOptionDialog(String string) {
-		new AlertDialog.Builder(this).setTitle("ÌáÊ¾")
-				.setMessage(string + "²»ÄÜÎª¿Õ!")
-				.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+		new AlertDialog.Builder(this).setTitle("æç¤º")
+				.setMessage(string + "ä¸èƒ½ä¸ºç©º!")
+				.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -260,7 +260,7 @@ public class SearchResultPage extends ListActivity {
 	 * mlistView.setAdapter(sAdapter);
 	 * 
 	 * flag = false; } else { if (isExit == false) { isExit = true;
-	 * Toast.makeText(this, "ÔÙ°´Ò»´ÎºóÍË¼üÍË³öÓ¦ÓÃ³ÌĞò", Toast.LENGTH_SHORT) .show();
+	 * Toast.makeText(this, "å†æŒ‰ä¸€æ¬¡åé€€é”®é€€å‡ºåº”ç”¨ç¨‹åº", Toast.LENGTH_SHORT) .show();
 	 * 
 	 * } else { finish(); System.exit(0); } } } if (keyCode ==
 	 * KeyEvent.KEYCODE_DEL){ System.out.println("KEYCODE_DEL"); }
@@ -273,9 +273,9 @@ public class SearchResultPage extends ListActivity {
 	 * System.out.println(event.toString());
 	 * 
 	 * if (event.getAction() == KeyEvent.ACTION_UP && event.getKeyCode() ==
-	 * KeyEvent.KEYCODE_BACK) { // ·µ»Ø×ÀÃæ } if (event.getAction() ==
+	 * KeyEvent.KEYCODE_BACK) { // è¿”å›æ¡Œé¢ } if (event.getAction() ==
 	 * KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_MENU) { //
-	 * µ¯³öÍË³ö³ÌĞòµÄÈ·¶¨¿ò } if (event.getAction() == KeyEvent.ACTION_UP &&
+	 * å¼¹å‡ºé€€å‡ºç¨‹åºçš„ç¡®å®šæ¡† } if (event.getAction() == KeyEvent.ACTION_UP &&
 	 * event.getKeyCode() == KeyEvent.KEYCODE_DEL) ;
 	 * 
 	 * return super.dispatchKeyEvent(event); }
